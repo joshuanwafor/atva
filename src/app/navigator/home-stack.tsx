@@ -8,7 +8,6 @@ import AppLogo from '../../component/atoms/svgs/logo';
 import ArrowLeft from '../../component/atoms/icons/arrow-left';
 import Details from '../../component/pages/details/details';
 import {DetailHeaderRight} from '../../component/organisms/details-header';
-import ViewMovie from 'pages/details/ViewMovie';
 const {multiply} = Animated;
 
 function HomeStack() {
@@ -31,9 +30,10 @@ function HomeStack() {
 
       <Stack.Screen
         name="Details"
-        component={ViewMovie}
+        component={Details}
         options={({route}) => ({
           headerShown: true,
+          headerTransparent: true,
           title: route.params.title ?? 'No title',
           headerLeftContainerStyle: {
             zIndex: 99999,
@@ -57,36 +57,6 @@ function HomeStack() {
           headerTitle: () => null,
         })}
       />
-
-      {/* <Stack.Screen
-        name="Details"
-        component={Details}
-        options={({route}) => ({
-          headerShown: true,
-          headerTransparent: true,
-          title: route.params.title ?? 'No title',
-          headerLeftContainerStyle: {
-            zIndex: 99999,
-          },
-          headerRightContainerStyle: {
-            zIndex: 99999,
-          },
-          headerLeft: (props) => (
-            <HeaderBackButton
-              {...props}
-              label=""
-              truncatedLabel=""
-              backImage={() => (
-                <View style={{paddingLeft: 10}}>
-                  <ArrowLeft width={22} height={22} fill={theme.colors.white} />
-                </View>
-              )}
-            />
-          ),
-          headerRight: (props) => <DetailHeaderRight />,
-          headerTitle: () => null,
-        })}
-      /> */}
     </Stack.Navigator>
   );
 }

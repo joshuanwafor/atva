@@ -54,7 +54,9 @@ function DetailsCaption({
       navigation.navigate('CompleteRegister');
       return;
     }
+
     if (isCinema == true) {
+    
       navigation.navigate('CinemaScreen', {movie: caption});
     } else {
       navigation.navigate('WatchScreen', {movie: caption});
@@ -119,7 +121,7 @@ function DetailsCaption({
   }, [isCinema, caption, isWatching, navigation, userAuthStore.data]);
 
   return (
-    <View style={{minHeight: 120, alignItems: 'flex-end'}}>
+    <View style={{ alignItems: 'flex-end'}}>
       <LinearGradient
         style={{width: '100%', height: '100%', position: 'absolute'}}
         start={{x: 0, y: 0}}

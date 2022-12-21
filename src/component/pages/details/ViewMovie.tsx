@@ -15,6 +15,7 @@ import {
 } from '../../../interface';
 import {AppTypographyB} from 'src/component/atoms/typographyv2';
 import PageTemplate from 'src/component/templates/page';
+import { Box } from 'native-base';
 
 function ViewMovie() {
   const navigation = useNavigation<NavigationProp<RootStackParameterList>>();
@@ -29,7 +30,13 @@ function ViewMovie() {
   return (
     // Details layout
     <PageTemplate>
-     
+      <AboutMovie
+        params={{
+          content: data,
+          isCinema: params.isCinema,
+          isWatching: params.isWatching,
+        }}
+      />
     </PageTemplate>
   );
 }

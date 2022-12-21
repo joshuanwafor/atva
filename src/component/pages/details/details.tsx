@@ -24,8 +24,6 @@ function Details() {
     movie_id: params.movie_id,
   });
 
-
-  console.log(data)
   return (
     // Details layout
     <DetailsLayout movieInfo={data}>

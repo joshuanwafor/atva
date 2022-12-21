@@ -88,68 +88,7 @@ function MainApp() {
             title: 'Favorites',
           }}
         />
-        <Stack.Screen
-          name="Details"
-          component={ViewMovie}
-          options={({route}) => ({
-            headerShown: true,
-            headerTransparent: true,
-            title: route.params.title ?? 'No title',
-            headerLeft: props => (
-              <HeaderBackButton
-                {...props}
-                label=""
-                truncatedLabel=""
-                backImage={() => (
-                  <View style={{paddingLeft: 10}}>
-                    <ArrowLeft
-                      width={22}
-                      height={22}
-                      fill={theme.colors.white}
-                    />
-                  </View>
-                )}
-              />
-            ),
-            headerRight: props => <DetailHeaderRight />,
-            headerTitle: () => null,
-          })}
-        />
-
-        {/* <Stack.Screen
-          name="Details"
-          component={Details}
-          options={({route}) => ({
-            headerShown: true,
-            headerTransparent: true,
-            title: route.params.title ?? 'No title',
-            headerLeftContainerStyle: {
-              zIndex: 99999,
-            },
-            headerRightContainerStyle: {
-              zIndex: 99999,
-            },
-            headerLeft: props => (
-              <HeaderBackButton
-                {...props}
-                label=""
-                truncatedLabel=""
-                backImage={() => (
-                  <View style={{paddingLeft: 10}}>
-                    <ArrowLeft
-                      width={22}
-                      height={22}
-                      fill={theme.colors.white}
-                    />
-                  </View>
-                )}
-              />
-            ),
-            headerRight: props => <DetailHeaderRight />,
-            headerTitle: () => null,
-          })}
-        /> */}
-
+    
         <Stack.Screen
           name="DownloadSettings"
           component={DownloadSettings}

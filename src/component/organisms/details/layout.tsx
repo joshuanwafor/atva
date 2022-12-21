@@ -60,17 +60,6 @@ const DetailsLayout = function ({
   }, []);
   useFocusEffect(
     React.useCallback(() => {
-      // navigation.setOptions({
-      //   headerBackground: ({style}: {style: StyleProp<ViewStyle>}) => (
-      //     <Animated.View
-      //       pointerEvents="box-none"
-      //       style={[
-      //         style,
-      //         {opacity, backgroundColor: 'rgba(20,20,20, 1)', height: '100%'},
-      //       ]}
-      //     />
-      //   ),
-      // });
       if (Platform.OS === 'android') {
         StatusBar.setBackgroundColor('transparent');
       }
