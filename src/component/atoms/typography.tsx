@@ -40,18 +40,6 @@ let styles = StyleSheet.create({
   },
 });
 
-export const AppTypography: React.FC<TType> = (props) => {
-  let style: TextProps['style'] = {
-    ...styles.body,
-  };
-  if (typeof props.style == 'object') {
-    let temp = style;
-    style = props.style;
-    style = {...temp, ...style};
-  }
-  return <Text {...props} style={style} />;
-};
-
 export const AppTypographyBody: React.FC<TType> = (props) => {
   let style: TextProps['style'] = {
     ...styles.body,

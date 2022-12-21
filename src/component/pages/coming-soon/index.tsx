@@ -1,6 +1,6 @@
 import React from 'react';
 import {SafeAreaView, View, Dimensions} from 'react-native';
-import Carousel from 'react-native-snap-carousel';
+import Carousel from 'react-native-snap-carousel-v4';
 import {SOComingSoonCard} from '../../organisms/coming-soon/card';
 import {useContent} from '../../../hooks/content';
 import {MinimalContent} from '../../../interface/content';

@@ -2,7 +2,7 @@ import * as React from 'react';
 
 import styled from 'styled-components/native';
 import {ListRenderItemInfo, FlatList, View} from 'react-native';
-import MovieItem from '../../organisms/movie-item/movie-item';
+import MovieItem from '../../organisms/movie-item/MovieItem';
 import {Movie} from '../../../interface/content';
 import {useSearchStore} from '../../../store/data/content/search';
 import {observer} from 'mobx-react';

@@ -11,7 +11,7 @@ import SliderDots from '../molecules/slider-dots';
 import IntroOne from '../organisms/intro/intro-one';
 import IntroThree from '../organisms/intro/intro-three';
 import IntroTwo from '../organisms/intro/intro-two';
-import {Button} from 'react-native';
+import {Button, SafeAreaView} from 'react-native';
 
 const Wrapper = styled.View`
   padding-left: ${sizeScale(s(20), 'px')};
@@ -29,7 +29,7 @@ const ButtonWrapper = styled.View`
 function Intro() {
   const navigation = useNavigation<IntroScreenNavigationProp>();
 
-  return <Button title="okkMe"></Button>;
+ 
   return (
     <IntroTemplate>
       <Swiper

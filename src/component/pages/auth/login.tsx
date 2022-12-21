@@ -25,7 +25,7 @@ function Login() {
         <TextField
           label="Your email address"
           placeholder="abc@example.com"
-          autoCompleteType="email"
+      
           autoCorrect
           keyboardType="email-address"
           returnKeyType="done"

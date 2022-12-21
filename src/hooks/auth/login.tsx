@@ -22,6 +22,7 @@ export function useLogin() {
 
       navigation.navigate('Code', {email: response.email, hash: response.hash});
     } catch (e) {
+      console.log(e, "erro")
       show('Error login you in');
     }
   }

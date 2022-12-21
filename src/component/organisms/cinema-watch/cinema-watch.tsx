@@ -6,10 +6,10 @@ import MovieCommentsActivity from './comments';
 import MovieLikesActivity from './likes';
 import Heart from '../../atoms/icons/heart';
 import {View} from 'react-native';
-import Ionicons from 'react-native-vector-icons/Ionicons';
 import styled from 'styled-components/native';
 import {HStackSpaceAround, TextTag} from './style';
 import {theme} from '../../../style/theme';
+import { ChatsCircle, Users } from 'phosphor-react-native';
 
 const Line = styled.View`
   height: 1px;
@@ -50,11 +50,7 @@ const CinemaWatchActviity: React.FC<{children?: React.ReactNode}> = () => {
           component={MovieCommentsActivity}
           options={{
             tabBarLabel: () => (
-              <Ionicons
-                name="chatbubble-ellipses-outline"
-                color="white"
-                size={16}
-              />
+              <ChatsCircle/>
             ),
           }}
         />
@@ -70,7 +66,7 @@ const CinemaWatchActviity: React.FC<{children?: React.ReactNode}> = () => {
           component={MovieLikesActivity}
           options={{
             tabBarLabel: () => (
-              <Ionicons name="people-outline" size={16} color="white" />
+              <Users size={16} color="white" />
             ),
           }}
         />

@@ -3,15 +3,7 @@ import styled from 'styled-components/native';
 import {ms, s} from 'react-native-size-matters';
 import {sizeScale, getFontFromTheme, getColorFromTheme} from '../../../utils';
 
-export const Wrapper = styled.View`
-  width: 100%;
-`;
 
-export const InnerWrapper = styled.View`
-  width: 100%;
-  padding-left: ${sizeScale(s(12), 'px')};
-  padding-right: ${sizeScale(s(12), 'px')};
-`;
 
 export const ActionWrapper = styled.View<{hasBorder?: boolean}>`
   align-items: flex-start;
@@ -32,18 +24,6 @@ export const ActionWrapper = styled.View<{hasBorder?: boolean}>`
 export const TextWrapper = styled.View`
   flex: 1;
   min-width: 0;
-`;
-
-export const Title = styled.Text`
-  font-family: ${getFontFromTheme('medium')};
-  font-size: ${sizeScale(ms(17, 0.2), 'px')};
-  color: ${getColorFromTheme('white')};
-  margin-bottom: 5px;
-`;
-export const SubTitle = styled.Text`
-  font-family: ${getFontFromTheme('medium')};
-  font-size: ${sizeScale(ms(13, 0.2), 'px')};
-  color: ${getColorFromTheme('brownishGrey')};
 `;
 
 export const IconWrapper = styled.View`

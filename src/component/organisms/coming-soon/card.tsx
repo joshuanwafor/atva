@@ -18,10 +18,10 @@ import {MoImage} from '../../../component/molecules/image/image';
 import FastImage from 'react-native-fast-image';
 import {useNavigation, NavigationProp} from '@react-navigation/native';
 import {RootStackParameterList} from '../../../interface';
-import Ionicons from 'react-native-vector-icons/Ionicons';
 import {ComingSoonContentsEntity} from '@interface/auth-data-interface';
 import {Modalize} from 'react-native-modalize';
 import BuyTicketAction from './buy-ticket';
+import {X} from 'phosphor-react-native';
 export const SOComingSoonCard: React.FC<{item: ComingSoonContentsEntity}> = ({
   item,
 }) => {
@@ -66,8 +66,7 @@ export const SOComingSoonCard: React.FC<{item: ComingSoonContentsEntity}> = ({
           style={{
             marginLeft: 25,
             marginRight: 25,
-          }}
-        >
+          }}>
           <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
             <SParagraph style={{color: 'gray', fontSize: 12}}>
               Coming Jan, 2022
@@ -85,8 +84,7 @@ export const SOComingSoonCard: React.FC<{item: ComingSoonContentsEntity}> = ({
               backgroundColor: 'transparent',
               borderRadius: 5,
               aspectRatio: 1 / 1.3,
-            }}
-          >
+            }}>
             <TouchableOpacity onPress={openPreview}>
               <MoImage
                 source={{
@@ -118,8 +116,7 @@ export const SOComingSoonCard: React.FC<{item: ComingSoonContentsEntity}> = ({
           <LinearButton
             onPress={() => {
               showActionRef();
-            }}
-          >
+            }}>
             Buy ticket
           </LinearButton>
         </View>
@@ -132,8 +129,7 @@ export const SOComingSoonCard: React.FC<{item: ComingSoonContentsEntity}> = ({
                   flex: 1,
                   alignItems: 'center',
                   justifyContent: 'center',
-                }}
-              >
+                }}>
                 <View
                   style={{
                     width: '100%',
@@ -154,16 +150,13 @@ export const SOComingSoonCard: React.FC<{item: ComingSoonContentsEntity}> = ({
                   }}
                 />
               </View>
-              <View style={{alignItems: 'center', padding: 24}}>
-                <Ionicons
-                  name="close-outline"
-                  size={42}
-                  color="white"
-                  onPress={() => {
-                    setShowPreview(false);
-                  }}
-                />
-              </View>
+              <TouchableOpacity
+                onPress={() => {
+                  setShowPreview(false);
+                }}
+                style={{alignItems: 'center', padding: 24}}>
+                <X size={42} color="white" />
+              </TouchableOpacity>
             </View>
           </View>
         </Modal>

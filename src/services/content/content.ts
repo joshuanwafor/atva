@@ -16,7 +16,7 @@ export const getAuthData = async (): Promise<TAuthDataEvent> => {
 };
 
 export const getContent = async (query?: {
-  [key: string]: string;
+  [key: string]: any;
 }): Promise<TContentEvent> => {
   // generate query string segment
   var queryString = '';
@@ -26,15 +26,13 @@ export const getContent = async (query?: {
       .join('&');
   }
 
-  console.log(queryString);
-
   return await axios.get<TContentResponse, TContentEvent>(
     `/content?${queryString}`,
   );
 };
 
 export const getSeriesContent = async (query?: {
-  [key: string]: string;
+  [key: string]: any;
 }): Promise<TContentEvent> => {
   return await axios.get<TContentResponse, TContentEvent>(
     `/content?type=tvshow`,

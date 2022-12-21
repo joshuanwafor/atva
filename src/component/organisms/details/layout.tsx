@@ -9,7 +9,7 @@ import {
 import styled from 'styled-components/native';
 import {useFocusEffect, useRoute} from '@react-navigation/native';
 import {onScrollEvent} from 'react-native-redash';
-import Animated, {interpolate, Extrapolate} from 'react-native-reanimated';
+import Animated, {Extrapolate, interpolate} from 'react-native-reanimated';
 import {useNavigation} from '@react-navigation/native';
 import {theme} from '../../../style/theme';
 import DetailsCaption from '../../organisms/details/caption';
@@ -21,6 +21,7 @@ import {FeaturedContent, Movie} from '../../../interface/content';
 import {PageWrapper} from '../../molecules/background';
 import {observer} from 'mobx-react';
 import {useInitHook} from '../../../hooks/init';
+import {useSafeAreaInsets} from 'react-native-safe-area-context';
 
 const InnerWrapper = styled.View`
   background-color: #141414;
@@ -36,19 +37,15 @@ const DetailsLayout = function ({
   children: React.ReactNode;
   movieInfo: Movie | FeaturedContent | undefined;
 }) {
- 
+  const insets = useSafeAreaInsets();
   const navigation = useNavigation();
   const y = React.useRef(new Animated.Value<number>(0));
 
-  const {max} = getDefaultDetailsCoverHeight(20);
+  const {max} = getDefaultDetailsCoverHeight(insets.top);
   const {params} = useRoute<DetailsScreenRouteProp>();
 
-    //@ts-ignore
-  const opacity = interpolate(y.current, {
-    inputRange: [0, 150],
-    outputRange: [0, 1],
-    extrapolateRight: Extrapolate.CLAMP,
-  });
+  //@ts-ignore
+  const opacity = interpolate(y.current, [0, 150], [0, 1], Extrapolate.CLAMP);
 
   const [refereshing, setRefreshing] = React.useState(false);
 
@@ -63,17 +60,17 @@ const DetailsLayout = function ({
   }, []);
   useFocusEffect(
     React.useCallback(() => {
-      navigation.setOptions({
-        headerBackground: ({style}: {style: StyleProp<ViewStyle>}) => (
-          <Animated.View
-            pointerEvents="box-none"
-            style={[
-              style,
-              {opacity, backgroundColor: 'rgba(20,20,20, 1)', height: '100%'},
-            ]}
-          />
-        ),
-      });
+      // navigation.setOptions({
+      //   headerBackground: ({style}: {style: StyleProp<ViewStyle>}) => (
+      //     <Animated.View
+      //       pointerEvents="box-none"
+      //       style={[
+      //         style,
+      //         {opacity, backgroundColor: 'rgba(20,20,20, 1)', height: '100%'},
+      //       ]}
+      //     />
+      //   ),
+      // });
       if (Platform.OS === 'android') {
         StatusBar.setBackgroundColor('transparent');
       }
@@ -94,6 +91,7 @@ const DetailsLayout = function ({
   return (
     <PageWrapper>
       <StatusBar backgroundColor="transparent" translucent />
+
       <DetailsCover
         y={y.current}
         cover={
@@ -103,6 +101,7 @@ const DetailsLayout = function ({
           ''
         }
       />
+
       <Animated.ScrollView
         refreshControl={
           <RefreshControl refreshing={refereshing} onRefresh={onRefresh} />

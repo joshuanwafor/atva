@@ -1,12 +1,13 @@
 import * as React from 'react';
 import {ListRenderItemInfo, FlatList, View} from 'react-native';
 import {s} from 'react-native-size-matters';
-import {Wrapper, Title, TitleWrapper} from './style';
+import {Wrapper} from './style';
 import OriginalsCard from './originals-card';
 import {MinimalContent} from '../../../interface/content';
 import {shuffleArray} from '../../../utils';
 import {useNavigation, NavigationProp} from '@react-navigation/native';
 import {RootStackParameterList} from 'src/interface';
+import HomeTitle from 'src/component/molecules/home-title';
 
 function Originals({items}: {items: MinimalContent[]}) {
   const navigation = useNavigation<NavigationProp<RootStackParameterList>>();
@@ -33,9 +34,7 @@ function Originals({items}: {items: MinimalContent[]}) {
 
   return (
     <Wrapper>
-      <TitleWrapper>
-        <Title>Exclusive from Astra TV</Title>
-      </TitleWrapper>
+      <HomeTitle title="Exclusinve on AstraTv" />
       <FlatList
         renderItem={renderItem}
         data={shuffleArray(items)}
@@ -51,7 +50,7 @@ function Originals({items}: {items: MinimalContent[]}) {
         snapToInterval={180}
         disableIntervalMomentum={true}
         ItemSeparatorComponent={() => <View style={{width: 10}} />}
-        keyExtractor={(item) => item.id}
+        keyExtractor={item => item.id}
         contentContainerStyle={{
           paddingHorizontal: s(12),
           alignItems: 'stretch',

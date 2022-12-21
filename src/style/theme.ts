@@ -42,3 +42,7 @@ export const theme = {
     secondary: 'Caladea-Regular',
   },
 };
+
+
+
+export const brandTheme= theme

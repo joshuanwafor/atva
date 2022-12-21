@@ -47,15 +47,26 @@ class ContentStore {
 
     let response: TContentEvent;
 
+  
+
     if (_type == 'tvshow') {
       response = await getSeriesContent({
-        source: _type,
+        type: _type,
+        page:1,
+        status:"published",
+        limit:30
       });
     } else {
       response = await getContent({
-        source: _type,
+        type: _type,
+        page:1,
+        status:"published",
+        limit:30
       });
     }
+
+    console.log(response.data);
+    
     runInAction(() => {
       if (_type == 'movie') {
         this.data = {

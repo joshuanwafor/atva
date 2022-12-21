@@ -15,25 +15,23 @@ import Search from '../../component/atoms/icons/search';
 import User from '../../component/atoms/icons/user';
 import Download from '../../component/atoms/icons/download';
 import DownloadsStack from './downloads-stack';
-import Upcoming from '../../component/atoms/icons/upcoming';
-import UpComingPage from '../../component/pages/coming-soon/index';
 import {useBillingStore} from '../../store/data/billing';
 import {NavigationProp, useNavigation} from '@react-navigation/native';
-import {RootStackParameterList} from '@interface/navigation';
+import {RootStackParameterList} from 'src/interface/navigation';
 import {userAuthStore} from '../../store/data/user-auth';
 function AppTab() {
   let billingStore = useBillingStore();
 
   let navigation = useNavigation<NavigationProp<RootStackParameterList>>();
 
-  React.useEffect(() => {
-    setTimeout(() => {
-      if (userAuthStore.data.content?.user.isSubscribed == false) {
-        //@ts-ignore
-        navigation.navigate('CompleteRegister');
-      }
-    }, 1000);
-  }, []);
+  // React.useEffect(() => {
+  //   setTimeout(() => {
+  //     if (userAuthStore.data.content?.user.isSubscribed == false) {
+  //       //@ts-ignore
+  //       navigation.navigate('CompleteRegister');
+  //     }
+  //   }, 1000);
+  // }, []);
 
   return (
     <Host>
@@ -63,7 +61,7 @@ function AppTab() {
             </TouchableRipple>
           ),
         }}
-        tabBar={(props) => (
+        tabBar={props => (
           <View
             style={{
               paddingHorizontal: ms(8, 0.6),
@@ -122,7 +120,7 @@ function AppTab() {
             ),
           }}
         />
-        <Tab.Screen
+        {/* <Tab.Screen
           name="Upcoming"
           component={UpComingPage}
           options={{
@@ -130,7 +128,7 @@ function AppTab() {
               <Upcoming fill={color} width={20} height={20} />
             ),
           }}
-        />
+        /> */}
         <Tab.Screen
           name="Downloads"
           component={DownloadsStack}

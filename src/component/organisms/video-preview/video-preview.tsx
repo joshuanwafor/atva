@@ -4,8 +4,7 @@ import {View, TouchableOpacity, Modal, Dimensions} from 'react-native';
 import {MinimalContent} from '../../../interface/content';
 
 import FastImage from 'react-native-fast-image';
-
-import Ionicons from 'react-native-vector-icons/Ionicons';
+import {X} from 'phosphor-react-native';
 export const SOComingSoonCard: React.FC<{item: MinimalContent}> = ({item}) => {
   const [showPreview, setShowPreview] = React.useState(false);
 
@@ -39,16 +38,13 @@ export const SOComingSoonCard: React.FC<{item: MinimalContent}> = ({item}) => {
               }}
             />
           </View>
-          <View style={{alignItems: 'center', padding: 24}}>
-            <Ionicons
-              name="close-outline"
-              size={42}
-              color="white"
-              onPress={() => {
-                setShowPreview(false);
-              }}
-            />
-          </View>
+          <TouchableOpacity
+            onPress={() => {
+              setShowPreview(false);
+            }}
+            style={{alignItems: 'center', padding: 24}}>
+            <X weight="light" size={42} color="white" />
+          </TouchableOpacity>
         </View>
       </View>
     </Modal>

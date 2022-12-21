@@ -1,6 +1,6 @@
 import * as React from 'react';
 // import {HeaderBackButton} from '@react-navigation/stack';
-import {View, Animated, Button, SafeAreaView} from 'react-native';
+import {View, Animated, Button, SafeAreaView, Text} from 'react-native';
 import {Host} from 'react-native-portalize';
 import {ms} from 'react-native-size-matters';
 import {Stack} from './stack';
@@ -20,46 +20,11 @@ const {multiply} = Animated;
 
 function AuthApp() {
   return (
-    <SafeAreaView
-      style={{backgroundColor: 'red', flex: 1, height: '100%'}}></SafeAreaView>
-  );
-  return (
     <Stack.Navigator
       initialRouteName="Intro"
-      screenOptions={
-        {
-          // headerStyle: {
-          //   backgroundColor: theme.colors.blackTwo,
-          //   borderColor: theme.colors.blackTwo,
-          //   shadowColor: theme.colors.blackTwo,
-          //   elevation: 0,
-          //   height: 70,
-          // },
-          // headerTitleStyle: {
-          //   fontFamily: theme.font.medium,
-          //   color: theme.colors.white,
-          //   fontSize: ms(15, 0.2),
-          // },
-          // headerTitleAlign: 'left',
-          // headerLeft: props => (
-          //   <HeaderBackButton
-          //     {...props}
-          //     label=""
-          //     truncatedLabel=""
-          //     backImage={() => (
-          //       <View style={{paddingLeft: 10}}>
-          //         <ArrowLeft
-          //           fill={theme.colors.brownGrey}
-          //           width={22}
-          //           height={22}
-          //         />
-          //       </View>
-          //     )}
-          //   />
-          // ),
-          // gestureDirection: 'horizontal',
-        }
-      }>
+      screenOptions={{
+       
+      }}>
       <Stack.Screen
         name="Intro"
         component={Intro}

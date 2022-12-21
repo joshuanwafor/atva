@@ -13,7 +13,8 @@ module.exports = api => {
         {
           alias: {
             locale: './locale',
-            app: './src/app',
+            pages:"./src/component/pages",
+            src: "./src",
           },
         },
       ],

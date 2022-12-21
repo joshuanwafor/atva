@@ -49,42 +49,14 @@ function Label(props: TProps) {
 
   let containerStyle = {
     transform: [
-      {
-        scale: labelAnimation.interpolate({
-          inputRange: [0, 1],
-          outputRange: [1, 14 / 16],
-        }),
-      },
-      {
-        translateY: labelAnimation.interpolate({
-          inputRange: [0, 1],
-          outputRange: [y0, y1],
-        }),
-      },
+  
     ],
   };
 
-  const color = disabled
-    ? theme.colors.white30
-    : focusAnimation.interpolate({
-        inputRange: [0, 1],
-        outputRange: [theme.colors.white70, theme.colors.white70],
-      });
-
-  const fontSize = disabled
-    ? ms(18, 0.2)
-    : focusAnimation.interpolate({
-        inputRange: [-1, 0, 1],
-        outputRange: [ms(14, 0.2), ms(18, 0.2), ms(14, 0.2)],
-      });
-  const textStyle = {
-    color,
-    fontSize,
-  };
 
   return (
     <Wrapper style={[containerStyle]}>
-      <Text style={[textStyle]}>{props.children}</Text>
+      <Text >{props.children}</Text>
     </Wrapper>
   );
 }

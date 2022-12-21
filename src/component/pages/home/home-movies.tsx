@@ -9,7 +9,7 @@ import {userAuthStore} from '../../../store/data/user-auth';
 import {contentStore} from '../../../store/data/content/content';
 import {View} from 'react-native';
 
-const HomeMovies = function ({y}: {y: Animated.Value<number>}) {
+const HomeMovies = function () {
   React.useEffect(() => {}, []);
   let contentGroups = contentStore.data.content_items.reduce<{
     [genreKey: string]: MinimalContent[];
@@ -37,7 +37,7 @@ const HomeMovies = function ({y}: {y: Animated.Value<number>}) {
 
   console.log(Object.keys(contentGroups));
   return (
-    <HomeLayout y={y} caption={userAuthStore.data.content?.featured_content}>
+    <HomeLayout caption={userAuthStore.data.content?.featured_content}>
       {Object.keys(contentGroups).map((genreKey) => {
         return (
           <View key={genreKey}>

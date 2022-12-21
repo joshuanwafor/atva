@@ -48,6 +48,7 @@ export const login = async (
   data: TLoginData,
   ua: string,
 ): Promise<TLoginEvent> => {
+  console.log(axios.defaults.baseURL)
   return axios.post<TLoginData, TLoginEvent>('/auth/login', data, {
     headers: {'User-Agent': ua},
   });

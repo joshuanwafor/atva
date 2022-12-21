@@ -7,7 +7,8 @@ import {observer} from 'mobx-react-lite';
 import {useWatchListStore} from '../../../store/data/user-lists/watchlist';
 import IconButton from '../../molecules/button/icon-button';
 import styled from 'styled-components/native';
-import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import {Trash} from 'phosphor-react-native';
+
 const ActionsWrapper = styled.View`
   flex-direction: row;
   align-items: center;
@@ -24,7 +25,7 @@ export const WatchlistActionButton: React.FC<{movie?: MinimalContent}> = ({
 
   let index = myWatchlist.content.items
     .slice()
-    .findIndex((v) => v.itemId == movie?.id);
+    .findIndex(v => v.itemId == movie?.id);
 
   if (index == -1) {
     return (
@@ -59,9 +60,7 @@ export const WatchlistActionButtonVert: React.FC<{
     return <BlurButton isLoading></BlurButton>;
   }
 
-  let index = myWatchlistStore.data.items.findIndex(
-    (v) => v.itemId == movie.id,
-  );
+  let index = myWatchlistStore.data.items.findIndex(v => v.itemId == movie.id);
 
   if (index == -1) {
     return (
@@ -81,7 +80,7 @@ export const WatchlistActionButtonVert: React.FC<{
   return (
     <ActionsWrapper>
       <IconButton
-        icon={<MaterialIcons name="remove" size={16} color="#fff" />}
+        icon={<Trash size={16} color="#fff" />}
         onPress={() => {
           let id = movie?.id ?? '';
           myWatchlistStore.delete(id);

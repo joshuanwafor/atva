@@ -1,35 +1,33 @@
+import {View} from 'native-base';
 import * as React from 'react';
+import {Dimensions} from 'react-native';
 import {StyleSheet} from 'react-native';
 import FastImage from 'react-native-fast-image';
 import Animated, {interpolate, Extrapolate} from 'react-native-reanimated';
 import {getDefaultCoverHeight} from '../../../utils';
 
 interface CoverProps {
-  y: Animated.Value<number>;
   cover: string;
 }
 
-const HomeCover = React.memo(function ({cover, y}: CoverProps) {
-  const {max, delta} = getDefaultCoverHeight(20);
-    //@ts-ignore
-  const scale: any = interpolate(y, {
-    inputRange: [-max, 0],
-    outputRange: [4, 1],
-    extrapolateRight: Extrapolate.CLAMP,
-  });
-    //@ts-ignore
-  const opacity = interpolate(y, {
-    inputRange: [-64, 0, delta],
-    outputRange: [0, 0.2, 1],
-    extrapolate: Extrapolate.CLAMP,
-  });
+const HomeCover = React.memo(function ({cover}: CoverProps) {
+  const {max, delta} = getDefaultCoverHeight(200);
+
+  const scale: any = interpolate(200, [-max, 0], [4, 1], Extrapolate.CLAMP);
+
+  const opacity = interpolate(
+    20,
+    [-64, 0, delta],
+    [0, 0.2, 1],
+    Extrapolate.CLAMP,
+  );
+
   return (
-    <Animated.View
-      style={[styles.container, {height: max}, {transform: [{scale}]}]}>
+    <View>
       <FastImage
         style={styles.image}
         source={{
-          uri: cover,
+          uri: 'https://res.cloudinary.com/astratv-africa/image/upload/v1660993269/astra_tv/2022/7/nKVMXjkMuLVaFERsaOtO7uIVAz3Qef.jpg',
           priority: FastImage.priority.high,
         }}
         resizeMode={FastImage.resizeMode.cover}
@@ -38,10 +36,16 @@ const HomeCover = React.memo(function ({cover, y}: CoverProps) {
         style={{
           ...StyleSheet.absoluteFillObject,
           backgroundColor: '#141414',
+        }}
+      />
+      <Animated.View
+        style={{
+          ...StyleSheet.absoluteFillObject,
+          backgroundColor: '#141414',
           opacity,
         }}
       />
-    </Animated.View>
+    </View>
   );
 });
 
@@ -51,8 +55,9 @@ const styles = StyleSheet.create({
   },
   image: {
     ...StyleSheet.absoluteFillObject,
-    width: undefined,
-    height: undefined,
+    // width: undefined,
+    width: Dimensions.get('screen').width,
+    height: Dimensions.get('screen').width * 1.2,
     top: 0,
     left: 0,
     justifyContent: 'flex-start',

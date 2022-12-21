@@ -1,7 +1,7 @@
 import * as React from 'react';
 import styled from 'styled-components/native';
 import {theme} from '../../style/theme';
-import ConnectedTemplate from '../templates/connected';
+import ConnectedTemplate from '../templates/page';
 import SectionTitle from '../atoms/section-title';
 import Devices from '../atoms/svgs/devices';
 import Laptop from '../atoms/svgs/laptop';

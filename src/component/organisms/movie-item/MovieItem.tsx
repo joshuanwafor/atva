@@ -12,19 +12,15 @@ import {
   LogoWrapper,
   FooterWrapper,
   ControlWrapper,
-  ControlItemWrapper,
-  TitleText,
-  LoaderWrapper,
 } from './style';
 import {HomeScreenNavigationProp, UserItem} from '../../../interface';
 import IconButton from '../../molecules/button/icon-button';
-import Plus from '../../atoms/icons/plus';
 import Info from '../../atoms/icons/info';
-import Loader from '../../atoms/loader';
 import {MinimalContent, Movie} from '../../../interface/content';
 import {View} from 'react-native';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import {WatchlistActionButtonVert} from '../watchlist-button';
+import {AppTypographySB} from 'src/component/atoms/typographyv2';
 
 interface TProps {
   item: MinimalContent;
@@ -71,23 +67,10 @@ function MovieItem({item}: TProps) {
         <FooterWrapper>
           <View style={{width: '50%'}}>
             <LogoWrapper>
-              {/* {item.banner?.source && (
-            <FastImage
-              source={{
-                uri: item.thumbnail_vertical?.url,
-                priority: FastImage.priority.high,
-              }}
-              style={
-                {
-                  // height: item.title_img.height,
-                  // width: item.title_img.width,
-                }
-              }
-              resizeMode={FastImage.resizeMode.contain}
-            />
-          )}
-          {!item.logo?.url && <Title>{item.title}</Title>} */}
-              <TitleText>{item.title}</TitleText>
+              <AppTypographySB fontSize={16} numberOfLines={2}>
+                {' '}
+                {item.title}
+              </AppTypographySB>
             </LogoWrapper>
           </View>
           <ActionsWrapper>

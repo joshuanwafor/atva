@@ -12,7 +12,7 @@ import {MinimalContent} from '../../../interface/content';
 import {View} from 'react-native';
 import {EmptySeriesList} from '../../organisms/nocontent/empty-list';
 
-const HomeSeries = function ({y}: {y: Animated.Value<number>}) {
+const HomeSeries = function () {
   const {data} = useAuthDataStore();
   const {content} = useContent();
 
@@ -42,7 +42,7 @@ const HomeSeries = function ({y}: {y: Animated.Value<number>}) {
   }
 
   return (
-    <HomeLayout y={y} caption={data.content?.featured_content}>
+    <HomeLayout  caption={data.content?.featured_content}>
       {Object.keys(contentGroups).map((genreKey) => {
         return (
           <View key={genreKey}>

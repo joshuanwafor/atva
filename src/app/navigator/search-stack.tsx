@@ -40,145 +40,16 @@ function SearchStack() {
   const navigation = useNavigation<HomeScreenNavigationProp>();
   const [searchQ, updateSearchQ] = React.useState('');
 
-
   const {search} = useSearchStore();
 
   return (
-    <Stack.Navigator
-      initialRouteName="Search"
-      screenOptions={{
-        headerStyle: {
-          backgroundColor: theme.colors.blackTwo,
-          borderColor: theme.colors.blackTwo,
-          shadowColor: theme.colors.blackTwo,
-          elevation: 0,
-          height:  50,
-        },
-        headerTitle: () => (
-          <SearchWrapper>
-            <Input
-              placeholder="Search for a show, movie, genre e.t.c"
-              placeholderTextColor={theme.colors.brownishGrey}
-              disableFullscreenUI={true}
-              selectionColor={theme.colors.alt}
-              value={searchQ}
-              onChangeText={(text:any) => {
-                updateSearchQ(text);
-              }}
-              onSubmitEditing={() => {
-                // dispatch search request
-                search(searchQ);
-                navigation.push('SearchResult');
-              }}
-            />
-          </SearchWrapper>
-        ),
-        headerTitleContainerStyle: {
-          margin: 0,
-          padding: 0,
-          left: 45 +20,
-          right: 45 + 20,
-        },
-        headerTitleAlign: 'left',
-        headerLeft: (props) => (
-          <HeaderBackButton
-            {...props}
-            label=""
-            truncatedLabel=""
-            backImage={() => (
-              <View style={{paddingLeft: 10}}>
-                <ArrowLeft
-                  width={22}
-                  height={22}
-                  fill={theme.colors.brownGrey}
-                />
-              </View>
-            )}
-          />
-        ),
-        cardStyleInterpolator: ({
-          current,
-          next,
-          inverted,
-          layouts: {screen},
-        }) => {
-          const translateFocused = multiply(
-            current.progress.interpolate({
-              inputRange: [0, 1],
-              outputRange: [screen.width, 0],
-              extrapolate: 'clamp',
-            }),
-            inverted,
-          );
-
-          const translateUnfocused = next
-            ? multiply(
-                next.progress.interpolate({
-                  inputRange: [0, 1],
-                  outputRange: [0, screen.width * -0.3],
-                  extrapolate: 'clamp',
-                }),
-                inverted,
-              )
-            : 0;
-
-          const overlayOpacity = current.progress.interpolate({
-            inputRange: [0, 1],
-            outputRange: [0, 0.07],
-            extrapolate: 'clamp',
-          });
-
-          const shadowOpacity = current.progress.interpolate({
-            inputRange: [0, 1],
-            outputRange: [0, 0.3],
-            extrapolate: 'clamp',
-          });
-
-          return {
-            cardStyle: {
-              transform: [
-                // Translation for the animation of the current card
-                {translateX: translateFocused},
-                // Translation for the animation of the card on top of this
-                {translateX: translateUnfocused},
-              ],
-            },
-            overlayStyle: {opacity: overlayOpacity},
-            shadowStyle: {shadowOpacity},
-          };
-        },
-        gestureDirection: 'horizontal',
-        transitionSpec: {
-          open: {
-            animation: 'spring',
-            config: {
-              stiffness: 1000,
-              damping: 500,
-              mass: 3,
-              overshootClamping: true,
-              restDisplacementThreshold: 10,
-              restSpeedThreshold: 10,
-            },
-          },
-          close: {
-            animation: 'spring',
-            config: {
-              stiffness: 1000,
-              damping: 500,
-              mass: 3,
-              overshootClamping: true,
-              restDisplacementThreshold: 10,
-              restSpeedThreshold: 10,
-            },
-          },
-        },
-      }}>
+    <Stack.Navigator initialRouteName="Search" screenOptions={{}}>
       <Stack.Screen
         name="Search"
         component={SearchHome}
         options={{
           headerShown: true,
-          headerLeft: (props) => (
+          headerLeft: props => (
             <HeaderBackButton
               {...props}
               label=""
@@ -220,7 +91,7 @@ function SearchStack() {
           headerRightContainerStyle: {
             zIndex: 99999,
           },
-          headerLeft: (props) => (
+          headerLeft: props => (
             <HeaderBackButton
               {...props}
               label=""
@@ -232,7 +103,7 @@ function SearchStack() {
               )}
             />
           ),
-          headerRight: (props) => <DetailHeaderRight />,
+          headerRight: props => <DetailHeaderRight />,
           headerTitle: () => null,
         })}
       />

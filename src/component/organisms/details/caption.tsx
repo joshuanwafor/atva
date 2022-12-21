@@ -1,6 +1,6 @@
 import * as React from 'react';
 import FastImage from 'react-native-fast-image';
-import Animated, {interpolate, Extrapolate} from 'react-native-reanimated';
+import Animated, {Extrapolate} from 'react-native-reanimated';
 import {View, StyleSheet, Linking} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 
@@ -25,6 +25,7 @@ import {WatchlistActionButton} from '../watchlist-button';
 import Orientation from 'react-native-orientation-locker';
 import {userAuthStore} from '../../../store/data/user-auth';
 import {observer} from 'mobx-react';
+import {brandTheme} from 'src/style/theme';
 
 function DetailsCaption({
   caption,
@@ -40,22 +41,6 @@ function DetailsCaption({
   const navigation = useNavigation<NavigationProp<RootStackParameterList>>();
 
   const {max} = getDefaultDetailsCoverHeight(20);
-
-
-    //@ts-ignore
-  const height = interpolate(y, {
-    inputRange: [-max, 70],
-    outputRange: [0, max + 250],
-    extrapolate: Extrapolate.CLAMP,
-  });
-
-
-    //@ts-ignore
-  const opacity = interpolate(y, {
-    inputRange: [-max / 2, 0, max / 1.3],
-    outputRange: [0, 1, 0],
-    extrapolate: Extrapolate.CLAMP,
-  });
 
   const onWatch = () => {
     if (caption == undefined) return;
@@ -108,20 +93,7 @@ function DetailsCaption({
   }, [caption]);
 
   const renderActions = React.useCallback(() => {
-    //isWatching
-    if (isWatching) {
-      return (
-        <React.Fragment>
-          <WhiteButton
-            onPress={() => {
-              onWatch();
-            }}>
-            {'Resume'}
-          </WhiteButton>
-        </React.Fragment>
-      );
-    }
-
+    
     if (false) {
       return (
         <React.Fragment>
@@ -148,27 +120,15 @@ function DetailsCaption({
 
   return (
     <View style={{minHeight: 120, alignItems: 'flex-end'}}>
-      <Animated.View
-        style={[
-          {
-            position: 'absolute',
-            left: 0,
-            bottom: 0,
-            right: 0,
-            alignItems: 'center',
-          },
-          {height},
-        ]}>
-        <LinearGradient
-          style={StyleSheet.absoluteFill}
-          start={{x: 0, y: 0}}
-          end={{x: 0, y: 1}}
-          locations={[0, 0.7, 0.8, 1]}
-          colors={['#14141400', '#14141440', '#14141460', '#141414']}
-        />
-      </Animated.View>
+      <LinearGradient
+        style={{width: '100%', height: '100%', position: 'absolute'}}
+        start={{x: 0, y: 0}}
+        end={{x: 0, y: 1}}
+        locations={[0, 1]}
+        colors={['transparent', brandTheme.colors.black]}
+      />
       <CaptionItemWrapper>
-        <FooterWrapper style={{opacity}}>
+        <FooterWrapper>
           <FooterInnerWrapper>
             <TitleWrapper>
               {caption?.logo?.small && (

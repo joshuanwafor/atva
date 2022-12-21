@@ -3,7 +3,7 @@ import * as React from 'react';
 import styled from 'styled-components/native';
 import {ListRenderItemInfo, FlatList, View} from 'react-native';
 import CategoryList from '../../organisms/categories';
-import MovieItem from '../../organisms/movie-item/movie-item';
+import MovieItem from '../../organisms/movie-item/MovieItem';
 import {useContent} from '../../../hooks/content';
 import {MinimalContent, Movie} from '../../../interface/content';
 import {observer} from 'mobx-react';

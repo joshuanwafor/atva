@@ -23,29 +23,6 @@ const Header = React.memo(function ({
 
   const maxHeaderHeight = getDefaultHeaderHeight(20);
 
-    //@ts-ignore
-  const height = interpolate(y, {
-    inputRange: [0, 70],
-    outputRange: [maxHeaderHeight, 20],
-    extrapolateRight: Extrapolate.CLAMP,
-  });
-
-  // @ts-ignore
-  const backgroundColor: Animated.Value<string> = interpolateColor(y, {
-    inputRange: [0, 20],
-    outputRange: [
-      'rgba(20,20,20, 0)',
-      Platform.select({ios: 'rgba(20,20,20, 0)', default: 'rgba(20,20,20, 1)'}),
-    ],
-  });
-
-  //@ts-ignore
-  const translateY = interpolate(y, {
-    inputRange: [0, 100],
-    outputRange: [0, -maxHeaderHeight],
-    extrapolateRight: Extrapolate.CLAMP,
-  });
-
   return (
     <React.Fragment>
       <View
@@ -55,7 +32,7 @@ const Header = React.memo(function ({
           pointerEvents="box-none"
           style={[
             StyleSheet.absoluteFill,
-            {zIndex: 0, backgroundColor: 'transparent', height},
+            {zIndex: 0, backgroundColor: 'transparent'},
           ]}
         />
         <Animated.View
@@ -64,7 +41,7 @@ const Header = React.memo(function ({
           style={{
             height: 20,
             zIndex: 1,
-            backgroundColor: backgroundColor,
+        
           }}
         />
         <Animated.View
@@ -76,7 +53,7 @@ const Header = React.memo(function ({
               alignItems: 'center',
               justifyContent: 'center',
             },
-            {transform: [{translateY: translateY}]},
+         
           ]}>
           <View
             pointerEvents="box-none"

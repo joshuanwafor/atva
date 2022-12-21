@@ -15,6 +15,8 @@ import BlurButton from '../../molecules/button/blur-button';
 import MovieTags from '../../molecules/tags';
 import {MinimalContent} from 'src/interface/content';
 import {TouchableOpacity} from 'react-native-gesture-handler';
+import { AppTypographySB } from 'src/component/atoms/typographyv2';
+
 
 export function OriginalsCard({
   onPress,
@@ -49,9 +51,9 @@ export function OriginalsCard({
               resizeMode={FastImage.resizeMode.contain}
             />
           </FooterPosterWrapper>
-          <FooterTitle numberOfLines={1} ellipsizeMode="tail">
+          <AppTypographySB ml={16} fontSize={16} numberOfLines={1} ellipsizeMode="tail">
             {item.title}
-          </FooterTitle>
+          </AppTypographySB>
           <MovieTags tags={item.tags} type="light" />
         </FooterTitleWrapper>
         <BlurButton onPress={onPress}>Learn more</BlurButton>

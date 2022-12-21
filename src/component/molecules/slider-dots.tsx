@@ -31,7 +31,7 @@ const Dot = styled(View)<TDotProps>`
 function SliderDot({active}: TDotProps) {
   const transition = useTransition(active, {
     duration: 100,
-    easing: Easing.inOut(Easing.ease),
+ 
   });
   const width = mix(transition, 7, 14);
 

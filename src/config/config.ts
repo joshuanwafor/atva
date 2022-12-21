@@ -1,6 +1,6 @@
 import Config from 'react-native-config';
 
-export const API_URI = Config.API_URI;
+export const API_URI = "https://api.astratvafrica.com";
 export const SENTRY_URI = Config.SENTRY_URI;
 export const GOOGLE_ANDROID_CLIENT_ID = Config.GOOGLE_ANDROID_CLIENT_ID;
 export const GOOGLE_IOS_CLIENT_ID = Config.GOOGLE_IOS_CLIENT_ID;

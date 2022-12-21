@@ -26,6 +26,8 @@ import CompleteRegister from '../../component/pages/auth/complete-register';
 import SetupSubscription from '../../component/pages/billing/complete-subscription';
 import {Host} from 'react-native-portalize';
 import {useInitHook} from '../../hooks/init';
+import {HeaderBackButton} from '@react-navigation/stack';
+import ViewMovie from 'pages/details/ViewMovie';
 
 const {multiply} = Animated;
 
@@ -34,122 +36,13 @@ function MainApp() {
 
   const {loadAppEnv} = useInitHook();
 
-
   React.useEffect(() => {
     loadAppEnv();
   }, []);
 
   return (
     <Host>
-      <Stack.Navigator
-        initialRouteName="Home"
-        screenOptions={{
-          headerStyle: {
-            backgroundColor: theme.colors.blackTwo,
-            borderColor: theme.colors.blackTwo,
-            shadowColor: theme.colors.blackTwo,
-            elevation: 0,
-            height:50,
-          },
-          headerTitleStyle: {
-            fontFamily: theme.font.medium,
-            color: theme.colors.white,
-            fontSize: ms(15, 0.2),
-          },
-          headerTitleAlign: 'left',
-          // headerLeft: (props) => (
-          //   <HeaderBackButton
-          //     {...props}
-          //     label=""
-          //     truncatedLabel=""
-          //     backImage={() => (
-          //       <View style={{paddingLeft: 10}}>
-          //         <ArrowLeft
-          //           width={22}
-          //           height={22}
-          //           fill={theme.colors.brownGrey}
-          //         />
-          //       </View>
-          //     )}
-          //   />
-          // ),
-          cardStyleInterpolator: ({
-            current,
-            next,
-            inverted,
-            layouts: {screen},
-          }) => {
-            const translateFocused = multiply(
-              current.progress.interpolate({
-                inputRange: [0, 1],
-                outputRange: [screen.width, 0],
-                extrapolate: 'clamp',
-              }),
-              inverted,
-            );
-
-            const translateUnfocused = next
-              ? multiply(
-                  next.progress.interpolate({
-                    inputRange: [0, 1],
-                    outputRange: [0, screen.width * -0.3],
-                    extrapolate: 'clamp',
-                  }),
-                  inverted,
-                )
-              : 0;
-
-            const overlayOpacity = current.progress.interpolate({
-              inputRange: [0, 1],
-              outputRange: [0, 0.07],
-              extrapolate: 'clamp',
-            });
-
-            const shadowOpacity = current.progress.interpolate({
-              inputRange: [0, 1],
-              outputRange: [0, 0.3],
-              extrapolate: 'clamp',
-            });
-
-            return {
-              cardStyle: {
-                transform: [
-                  // Translation for the animation of the current card
-                  {translateX: translateFocused},
-                  // Translation for the animation of the card on top of this
-                  {translateX: translateUnfocused},
-                ],
-              },
-              overlayStyle: {opacity: overlayOpacity},
-              shadowStyle: {shadowOpacity},
-            };
-          },
-          gestureDirection: 'horizontal',
-          transitionSpec: {
-            open: {
-              animation: 'spring',
-              config: {
-                stiffness: 1000,
-                damping: 500,
-                mass: 3,
-                overshootClamping: true,
-                restDisplacementThreshold: 10,
-                restSpeedThreshold: 10,
-              },
-            },
-            close: {
-              animation: 'spring',
-              config: {
-                stiffness: 1000,
-                damping: 500,
-                mass: 3,
-                overshootClamping: true,
-                restDisplacementThreshold: 10,
-                restSpeedThreshold: 10,
-              },
-            },
-          },
-        }}>
+      <Stack.Navigator initialRouteName="MainApp" screenOptions={{}}>
         <Stack.Screen
           name="MainApp"
           component={AppTab}
@@ -197,6 +90,34 @@ function MainApp() {
         />
         <Stack.Screen
           name="Details"
+          component={ViewMovie}
+          options={({route}) => ({
+            headerShown: true,
+            headerTransparent: true,
+            title: route.params.title ?? 'No title',
+            headerLeft: props => (
+              <HeaderBackButton
+                {...props}
+                label=""
+                truncatedLabel=""
+                backImage={() => (
+                  <View style={{paddingLeft: 10}}>
+                    <ArrowLeft
+                      width={22}
+                      height={22}
+                      fill={theme.colors.white}
+                    />
+                  </View>
+                )}
+              />
+            ),
+            headerRight: props => <DetailHeaderRight />,
+            headerTitle: () => null,
+          })}
+        />
+
+        {/* <Stack.Screen
+          name="Details"
           component={Details}
           options={({route}) => ({
             headerShown: true,
@@ -208,26 +129,26 @@ function MainApp() {
             headerRightContainerStyle: {
               zIndex: 99999,
             },
-            // headerLeft: (props) => (
-            //   <HeaderBackButton
-            //     {...props}
-            //     label=""
-            //     truncatedLabel=""
-            //     backImage={() => (
-            //       <View style={{paddingLeft: 10}}>
-            //         <ArrowLeft
-            //           width={22}
-            //           height={22}
-            //           fill={theme.colors.white}
-            //         />
-            //       </View>
-            //     )}
-            //   />
-            // ),
-            headerRight: (props) => <DetailHeaderRight />,
+            headerLeft: props => (
+              <HeaderBackButton
+                {...props}
+                label=""
+                truncatedLabel=""
+                backImage={() => (
+                  <View style={{paddingLeft: 10}}>
+                    <ArrowLeft
+                      width={22}
+                      height={22}
+                      fill={theme.colors.white}
+                    />
+                  </View>
+                )}
+              />
+            ),
+            headerRight: props => <DetailHeaderRight />,
             headerTitle: () => null,
           })}
-        />
+        /> */}
 
         <Stack.Screen
           name="DownloadSettings"

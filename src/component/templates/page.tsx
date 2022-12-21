@@ -16,7 +16,7 @@ const Wrapper = styled.ScrollView`
   padding-top: ${sizeScale(s(20), 'px')};
 `;
 
-function ConnectedTemplate({children}: TChildProps) {
+function PageTemplate({children}: TChildProps) {
   React.useEffect(() => {
     Orientation.lockToPortrait();
   }, []);
@@ -43,4 +43,4 @@ function ConnectedTemplate({children}: TChildProps) {
   );
 }
 
-export default ConnectedTemplate;
+export default PageTemplate;

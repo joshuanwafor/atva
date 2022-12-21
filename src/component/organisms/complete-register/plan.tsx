@@ -81,13 +81,6 @@ const Plan = React.memo(function ({
 }) {
   const transition = useTransition(active, {
     duration: 200,
-    easing: Easing.inOut(Easing.ease),
-  });
-
-  // @ts-ignore
-  const borderColor: Animated.Node<string> = interpolateColor(transition, {
-    inputRange: [0, 1],
-    outputRange: [theme.colors.white30, theme.colors.alt],
   });
 
   return (
@@ -95,12 +88,11 @@ const Plan = React.memo(function ({
       <TouchableItem
         accessible
         accessibilityRole="button"
-        accessibilityComponentType="button"
+      
         accessibilityLabel={`Select ${plan.title} plan`}
-        accessibilityTraits="button"
         delayPressIn={0}
         onPress={onPress}>
-        <PlanInnerWrapper style={{borderColor}}>
+        <PlanInnerWrapper>
           <PlanTitle>{plan.title.toUpperCase()}</PlanTitle>
           <PlanPrice>{plan.price}</PlanPrice>
           <PlanFreeTime>30 days free</PlanFreeTime>

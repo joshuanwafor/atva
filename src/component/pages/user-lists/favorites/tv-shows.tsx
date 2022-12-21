@@ -4,7 +4,7 @@ import styled from 'styled-components/native';
 import {FlatList} from 'react-native-gesture-handler';
 import {View, ListRenderItemInfo} from 'react-native';
 import EmptyFavorites from '../../../organisms/user-lists/empty-favortites';
-import MovieItemCard from '../../../organisms/movie-item/movie-item';
+import MovieItemCard from 'src/component/organisms/movie-item/MovieItem';
 import {Movie} from '../../../../interface/content';
 import Loader from '../../../atoms/loader';
 

@@ -1,15 +1,10 @@
 import * as React from 'react';
 import {View} from 'react-native';
 import {
-  Wrapper,
   ActionWrapper,
-  FooterWrapper,
   IconWrapper,
   RightIconWrapper,
   TextWrapper,
-  SubTitle,
-  Title,
-  InnerWrapper,
 } from './style';
 
 import AngleArrowRight from '../../atoms/icons/angle-arrow-right';
@@ -17,6 +12,8 @@ import External from '../../atoms/icons/external';
 import TouchableItem from '../../molecules/touchable-item';
 
 import {theme} from '../../../style/theme';
+import {AppTypography, AppTypographySB} from 'src/component/atoms/typographyv2';
+import { Box, VStack } from 'native-base';
 
 interface TProps {
   title: string;
@@ -76,7 +73,7 @@ function ActionLink(props: TProps) {
   }
 
   return (
-    <Wrapper>
+    <VStack w="100%">
       <TouchableItem
         accessible
         accessibilityRole="button"
@@ -84,19 +81,21 @@ function ActionLink(props: TProps) {
         delayPressIn={0}
         disabled={disabled}
         onPress={onPress}>
-        <InnerWrapper>
+        <Box px="12px">
           <ActionWrapper hasBorder={hasBorder}>
             <IconWrapper>{icon}</IconWrapper>
             <TextWrapper>
-              <Title>{title}</Title>
-              {subtitle && <SubTitle>{subtitle}</SubTitle>}
+              <AppTypographySB fontSize={16}>{title}</AppTypographySB>
+              {subtitle && (
+                <AppTypography color={'gray.500'}>{subtitle}</AppTypography>
+              )}
             </TextWrapper>
             {(onPress || actionComponent) && renderRightIcon()}
           </ActionWrapper>
-        </InnerWrapper>
+        </Box>
       </TouchableItem>
-      {footer && <FooterWrapper>{footer}</FooterWrapper>}
-    </Wrapper>
+      {footer && <Box px={"12px"} w="100%" flex={1}>{footer}</Box>}
+    </VStack>
   );
 }
 

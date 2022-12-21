@@ -15,13 +15,13 @@ import {
   EmptySeriesList,
 } from '../../organisms/nocontent/empty-list';
 
-const HomeMovies = function ({y}: {y: Animated.Value<number>}) {
+const HomeMovies = function () {
   let contentGroups = contentStore.data.content_items.reduce<{
     [genreKey: string]: MinimalContent[];
   }>((movieGroups: any, movieContent: MinimalContent) => {
     if (movieContent.genre == undefined) return movieGroups;
 
-    movieContent.genre.forEach((genre) => {
+    movieContent.genre.forEach(genre => {
       movieGroups[genre.id] = [...(movieGroups[genre.id] || []), movieContent];
     });
     return movieGroups;
@@ -32,7 +32,7 @@ const HomeMovies = function ({y}: {y: Animated.Value<number>}) {
   for (let genreKey in contentGroups) {
     if (genreKey != undefined) {
       let category = userAuthStore.data.content?.content_categories?.find(
-        (temp) => temp.id == genreKey,
+        temp => temp.id == genreKey,
       );
       if (category != undefined) {
         genreMap[category.id] = category.title;
@@ -41,8 +41,8 @@ const HomeMovies = function ({y}: {y: Animated.Value<number>}) {
   }
 
   return (
-    <HomeLayout y={y} caption={userAuthStore.data.content?.featured_content}>
-      {Object.keys(contentGroups).map((genreKey) => {
+    <HomeLayout caption={userAuthStore.data.content?.featured_content}>
+      {Object.keys(contentGroups).map(genreKey => {
         return (
           <View key={genreKey}>
             <HomeTitle title={genreMap[genreKey]} />

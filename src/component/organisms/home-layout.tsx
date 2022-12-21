@@ -24,15 +24,12 @@ const InnerWrapper = styled.View`
 `;
 
 const HomeLayout = function ({
-  y,
   children,
   caption,
 }: {
-  y: Animated.Value<number>;
   children: React.ReactNode;
   caption: MinimalContent | undefined;
 }) {
-
   const {max} = getDefaultCoverHeight(20);
 
   const [refereshing, setRefreshing] = React.useState(false);
@@ -68,7 +65,7 @@ const HomeLayout = function ({
         }
         return (
           <Wrapper>
-            <HomeCover y={y} cover={coverPhoto} />
+            <HomeCover cover={coverPhoto} />
             <Animated.ScrollView
               refreshControl={
                 <RefreshControl
@@ -85,9 +82,10 @@ const HomeLayout = function ({
                 flex: 1,
                 paddingTop: max - 200,
               }}
-              onScroll={onScrollEvent({y})}
               endFillColor={theme.colors.black}>
-              {caption == null ? null : <HomeCaption y={y} caption={caption} />}
+              {caption == undefined ? undefined : (
+                <HomeCaption caption={caption} />
+              )}
               <InnerWrapper>{children}</InnerWrapper>
             </Animated.ScrollView>
           </Wrapper>
@@ -96,7 +94,7 @@ const HomeLayout = function ({
 
       return <MoLoadingFilled />;
     },
-    [caption, children, max, y],
+    [caption, children, max],
   );
 
   return render();

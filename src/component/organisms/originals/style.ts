@@ -5,7 +5,7 @@ import {getColorFromTheme, getFontFromTheme, sizeScale} from '../../../utils';
 
 export const Wrapper = styled.View`
   background-color: ${getColorFromTheme('blackTwoV2')};
-  padding-vertical: 20px;
+  padding-bottom: 12px;
   margin-bottom: 10px;
 `;
 

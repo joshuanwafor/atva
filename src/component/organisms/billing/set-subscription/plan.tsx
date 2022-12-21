@@ -103,9 +103,8 @@ const Plan = React.memo(function ({
       <TouchableItem
         accessible
         accessibilityRole="button"
-        accessibilityComponentType="button"
         accessibilityLabel={`Select ${plan.name} plan`}
-        accessibilityTraits="button"
+      
         delayPressIn={0}
         onPress={onPress}
       >

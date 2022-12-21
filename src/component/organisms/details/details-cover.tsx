@@ -1,6 +1,7 @@
 import * as React from 'react';
-import {StyleSheet} from 'react-native';
+import {Dimensions, StyleSheet, View} from 'react-native';
 import FastImage from 'react-native-fast-image';
+import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import Animated, {interpolate, Extrapolate} from 'react-native-reanimated';
 import {getDefaultDetailsCoverHeight} from '../../../utils';
 
@@ -10,27 +11,21 @@ interface CoverProps {
 }
 
 const DetailsCover = React.memo(function ({cover, y}: CoverProps) {
+  const insets = useSafeAreaInsets();
+  const {max, delta} = getDefaultDetailsCoverHeight(insets.top);
+  //@ts-ignore
+  const scale: any = interpolate(y, [-max, 0], Extrapolate.CLAMP);
 
-  const {max, delta} = getDefaultDetailsCoverHeight(20);
-
+  const opacity = interpolate(
     //@ts-ignore
-
-  const scale: any = interpolate(y, {
-    inputRange: [-max, 0],
-    outputRange: [4, 1],
-    extrapolateRight: Extrapolate.CLAMP,
-  });
-
-    //@ts-ignore
-  const opacity = interpolate(y, {
-    inputRange: [-64, 0, delta],
-    outputRange: [0, 0.2, 1],
-    extrapolate: Extrapolate.CLAMP,
-  });
+    20,
+    [-64, 0, delta],
+    [0, 0.2, 1],
+    Extrapolate.CLAMP,
+  );
 
   return (
-    <Animated.View
-      style={[styles.container, {height: max}, {transform: [{scale}]}]}>
+    <View>
       <FastImage
         style={styles.image}
         source={{
@@ -43,10 +38,16 @@ const DetailsCover = React.memo(function ({cover, y}: CoverProps) {
         style={{
           ...StyleSheet.absoluteFillObject,
           backgroundColor: '#141414',
+        }}
+      />
+      <Animated.View
+        style={{
+          ...StyleSheet.absoluteFillObject,
+          backgroundColor: '#141414',
           opacity,
         }}
       />
-    </Animated.View>
+    </View>
   );
 });
 
@@ -56,8 +57,8 @@ const styles = StyleSheet.create({
   },
   image: {
     ...StyleSheet.absoluteFillObject,
-    width: undefined,
-    height: undefined,
+    width: Dimensions.get('screen').width,
+    height: Dimensions.get('screen').width * 1.2,
     top: 0,
     left: 0,
     justifyContent: 'flex-start',

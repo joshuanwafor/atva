@@ -13,8 +13,7 @@ import {
   DetailsScreenRouteProp,
   RootStackParameterList,
 } from '../../../interface';
-import {useInitHook} from '@hooks/init';
-import {wait} from 'src/utils';
+import {AppTypographyB} from 'src/component/atoms/typographyv2';
 
 function Details() {
   const navigation = useNavigation<NavigationProp<RootStackParameterList>>();
@@ -25,6 +24,8 @@ function Details() {
     movie_id: params.movie_id,
   });
 
+
+  console.log(data)
   return (
     // Details layout
     <DetailsLayout movieInfo={data}>

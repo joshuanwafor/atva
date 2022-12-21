@@ -4,8 +4,7 @@ import SplashScreen from 'react-native-splash-screen';
 import AuthApp from './navigator/auth';
 import MainApp from './navigator/app';
 import {theme} from '../style/theme';
-import {Button, View} from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import {Button, SafeAreaView, View} from 'react-native';
 
 const MyTheme = {
   ...DefaultTheme,
@@ -27,10 +26,9 @@ export function Navigator({token}: {token?: string}) {
 
 
   return (
-    <SafeAreaView>
+    <SafeAreaView style={{height:"100%", backgroundColor:"orange"}}>
       <NavigationContainer theme={MyTheme}>
-        <AuthApp />
-        {/* {token ? <MainApp /> : <AuthApp />} */}
+        {token ? <MainApp /> : <AuthApp />}
       </NavigationContainer>
     </SafeAreaView>
   );

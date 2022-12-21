@@ -33,20 +33,11 @@ interface TProps {
 }
 
 function Helper({children, focusAnimation, error}: TProps) {
-  const color = error
-    ? theme.colors.rouge
-    : focusAnimation.interpolate({
-        inputRange: [0, 1],
-        outputRange: [theme.colors.white30, theme.colors.white30],
-      });
 
-  let textStyle = {
-    color,
-  };
 
   return (
     <HelperWrapper>
-      <StyledText style={[textStyle]}>{children}</StyledText>
+      <StyledText>{children}</StyledText>
     </HelperWrapper>
   );
 }

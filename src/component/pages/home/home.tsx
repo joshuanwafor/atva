@@ -47,7 +47,7 @@ function HomeAll() {
   };
 
   const changeHomeSection = (section: HomeSections) => {
-    y.current = new Animated.Value<number>(0);
+  
     setActiveSection(section);
     actionRef.current?.close();
   };
@@ -55,15 +55,15 @@ function HomeAll() {
   const renderHomeSection = function () {
     switch (activeSection) {
       case HomeSections.HOME:
-        return <HomeHome y={y.current} />;
+        return <HomeHome  />;
       case HomeSections.CINEMA:
-        return <HomeCinema y={y.current} />;
+        return <HomeCinema  />;
       case HomeSections.MOVIES:
-        return <HomeMovies y={y.current} />;
+        return <HomeMovies />;
       case HomeSections.SERIES:
-        return <HomeSeries y={y.current} />;
+        return <HomeSeries />;
       default:
-        return <HomeHome y={y.current} />;
+        return <HomeHome />;
     }
   };
 
