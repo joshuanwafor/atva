@@ -14,6 +14,7 @@ import {
   RootStackParameterList,
 } from '../../../interface';
 import {AppTypographyB} from 'src/component/atoms/typographyv2';
+import { Box } from 'native-base';
 
 function Details() {
   const navigation = useNavigation<NavigationProp<RootStackParameterList>>();
@@ -23,6 +24,8 @@ function Details() {
   let {data} = useContentInfo({
     movie_id: params.movie_id,
   });
+
+
 
   return (
     // Details layout

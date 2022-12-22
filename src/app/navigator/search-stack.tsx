@@ -1,7 +1,6 @@
 import * as React from 'react';
 import {View, Animated} from 'react-native';
 import styled from 'styled-components/native';
-import {HeaderBackButton} from '@react-navigation/stack';
 import {Stack} from './stack';
 import ArrowLeft from '../../component/atoms/icons/arrow-left';
 import {theme} from '../../style/theme';
@@ -16,6 +15,7 @@ import {HomeScreenNavigationProp} from '../../interface';
 import {TitleText} from '../../component/organisms/movie-item/style';
 import {useSearchStore} from '../../store/data/content/search';
 import {DetailHeaderRight} from '../../component/organisms/details-header';
+import {TouchableOpacity} from 'react-native-gesture-handler';
 
 const {multiply} = Animated;
 
@@ -43,28 +43,21 @@ function SearchStack() {
   const {search} = useSearchStore();
 
   return (
-    <Stack.Navigator initialRouteName="Search" screenOptions={{}}>
+    <Stack.Navigator
+      initialRouteName="Search"
+      screenOptions={{
+        headerShown: false,
+      }}>
       <Stack.Screen
         name="Search"
         component={SearchHome}
         options={{
-          headerShown: true,
           headerLeft: props => (
-            <HeaderBackButton
-              {...props}
-              label=""
-              disabled
-              truncatedLabel=""
-              backImage={() => (
-                <View style={{paddingLeft: 10}}>
-                  <Search
-                    width={22}
-                    height={22}
-                    fill={theme.colors.brownGrey}
-                  />
-                </View>
-              )}
-            />
+            <TouchableOpacity>
+              <View style={{paddingLeft: 10}}>
+                <Search width={22} height={22} fill={theme.colors.brownGrey} />
+              </View>
+            </TouchableOpacity>
           ),
         }}
       />
@@ -92,16 +85,11 @@ function SearchStack() {
             zIndex: 99999,
           },
           headerLeft: props => (
-            <HeaderBackButton
-              {...props}
-              label=""
-              truncatedLabel=""
-              backImage={() => (
-                <View style={{paddingLeft: 10}}>
-                  <ArrowLeft width={22} height={22} fill={theme.colors.white} />
-                </View>
-              )}
-            />
+            <TouchableOpacity>
+              <View style={{paddingLeft: 10}}>
+                <ArrowLeft width={22} height={22} fill={theme.colors.white} />
+              </View>
+            </TouchableOpacity>
           ),
           headerRight: props => <DetailHeaderRight />,
           headerTitle: () => null,

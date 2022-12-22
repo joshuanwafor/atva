@@ -93,7 +93,9 @@ function Profile() {
           title="Favorite"
           subtitle="Liked TV shows/movies or artist"
           icon={<Heart fill="#fff" width={18} height={18} />}
-          onPress={() => navigation.navigate('Favorites')}
+          onPress={() => {
+            // navigation.navigate('Favorites')
+          }}
           actionType="next"
         />
       </SectionWrapper>

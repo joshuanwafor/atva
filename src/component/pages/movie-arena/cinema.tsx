@@ -76,7 +76,7 @@ export const CinemaScreen: React.FC<{}> = () => {
 
   if (canWatch == false) {
     return (
-      <VStack h={"100%"}>
+      <VStack h={'100%'}>
         <Center>
           <Spinner color="white" />
         </Center>

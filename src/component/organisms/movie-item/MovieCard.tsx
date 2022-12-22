@@ -45,19 +45,21 @@ function MovieCard({item}: TProps) {
     });
   }
   return (
-    <Box
-      style={{aspectRatio: 1 / 1.3, width: '100%'}}
-      rounded="md"
-      overflow={'hidden'}>
-      <FastImage
-        style={{width: '100%', height: '100%'}}
-        source={{
-          uri: item.thumbnail_vertical?.url ?? '',
-          priority: FastImage.priority.high,
-        }}
-        resizeMode={FastImage.resizeMode.cover}
-      />
-    </Box>
+    <TouchableOpacity onPress={onNavigateMore}>
+      <Box
+        style={{aspectRatio: 1 / 1.3, width: '100%'}}
+        rounded="md"
+        overflow={'hidden'}>
+        <FastImage
+          style={{width: '100%', height: '100%'}}
+          source={{
+            uri: item.thumbnail_vertical?.url ?? '',
+            priority: FastImage.priority.high,
+          }}
+          resizeMode={FastImage.resizeMode.cover}
+        />
+      </Box>
+    </TouchableOpacity>
   );
 }
 

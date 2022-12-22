@@ -9,6 +9,7 @@ export function useNotify() {
       textColor: 'white',
       backgroundColor: theme.colors.blackTwo,
       fontFamily: theme.font.medium,
+    
     });
   }
   return {show};

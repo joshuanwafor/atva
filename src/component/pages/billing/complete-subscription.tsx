@@ -31,8 +31,10 @@ function CompleteRegister() {
       refreshControl={
         <RefreshControl refreshing={refereshing} onRefresh={onRefresh} />
       }>
-      <SelectedPlanDescription />
-      <SetupSubscription />
+        <SelectedPlanDescription />
+        <SetupSubscription />
+      {/* 
+     */}
     </ScrollView>
   );
 }

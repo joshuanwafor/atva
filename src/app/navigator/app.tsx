@@ -26,8 +26,9 @@ import CompleteRegister from '../../component/pages/auth/complete-register';
 import SetupSubscription from '../../component/pages/billing/complete-subscription';
 import {Host} from 'react-native-portalize';
 import {useInitHook} from '../../hooks/init';
-import {HeaderBackButton} from '@react-navigation/stack';
+import {} from '@react-navigation/stack';
 import ViewMovie from 'pages/details/ViewMovie';
+import {Box} from 'native-base';
 
 const {multiply} = Animated;
 
@@ -39,6 +40,7 @@ function MainApp() {
   React.useEffect(() => {
     loadAppEnv();
   }, []);
+
 
   return (
     <Host>
@@ -88,7 +90,7 @@ function MainApp() {
             title: 'Favorites',
           }}
         />
-    
+
         <Stack.Screen
           name="DownloadSettings"
           component={DownloadSettings}

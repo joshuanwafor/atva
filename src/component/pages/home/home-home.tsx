@@ -17,10 +17,10 @@ const HomeHome = function () {
 
   return (
     <HomeLayout caption={authContent.content.content?.featured_content}>
-      <HomeTitle title="AstraTv Selected" />
+      <HomeTitle title="Random Selections" />
+      <RenderHorizMovies items={shuffleArray(content.content_items.slice())} />
+      <HomeTitle title="What to watch on AstraTv" />
       <RenderHorizMovies items={content.content_items.slice()} />
-      <HomeTitle title="What to watch" />
-      <HomeMovieSection items={content.content_items.slice()} />
       <Originals items={content.content_items.slice()} />
     </HomeLayout>
   );

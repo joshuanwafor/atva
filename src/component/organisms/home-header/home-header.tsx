@@ -2,7 +2,6 @@ import * as React from 'react';
 import {View, StyleSheet, Platform} from 'react-native';
 import Animated, {interpolate, Extrapolate} from 'react-native-reanimated';
 import {interpolateColor} from 'react-native-redash';
-import {HeaderBackButton} from '@react-navigation/stack';
 import {ms} from 'react-native-size-matters';
 import Notification from '../../atoms/icons/notification';
 import {theme} from '../../../style/theme';
@@ -10,6 +9,7 @@ import AppLogo from '../../atoms/svgs/logo';
 import HeaderButton from '../../molecules/button/header-button';
 import {HomeSections} from '../../../interface';
 import {getDefaultHeaderHeight} from '../../../utils';
+import {TouchableOpacity} from 'react-native-gesture-handler';
 
 const Header = React.memo(function ({
   y,
@@ -20,7 +20,6 @@ const Header = React.memo(function ({
   showAction: () => void;
   activeSection: HomeSections;
 }) {
-
   const maxHeaderHeight = getDefaultHeaderHeight(20);
 
   return (
@@ -37,11 +36,9 @@ const Header = React.memo(function ({
         />
         <Animated.View
           pointerEvents="none"
-
           style={{
             height: 20,
             zIndex: 1,
-        
           }}
         />
         <Animated.View
@@ -53,7 +50,6 @@ const Header = React.memo(function ({
               alignItems: 'center',
               justifyContent: 'center',
             },
-         
           ]}>
           <View
             pointerEvents="box-none"
@@ -67,17 +63,10 @@ const Header = React.memo(function ({
                 justifyContent: 'center',
                 alignItems: 'flex-start',
               },
-          
             ]}>
             <HeaderButton onPress={showAction}>{activeSection}</HeaderButton>
           </View>
-          <View
-            pointerEvents="box-none"
-            style={[
-              {
-               
-              },
-            ]}>
+          <View pointerEvents="box-none" style={[{}]}>
             <AppLogo />
           </View>
           <View
@@ -91,7 +80,6 @@ const Header = React.memo(function ({
                 justifyContent: 'center',
                 alignItems: 'flex-end',
               },
-             
             ]}>
             <View
               style={{
@@ -103,19 +91,15 @@ const Header = React.memo(function ({
                 paddingHorizontal: 0,
                 paddingVertical: 0,
               }}>
-              <HeaderBackButton
-                labelVisible={false}
-                pressColorAndroid={theme.colors.white10}
-                backImage={() => (
-                  <View
-                    style={{
-                      paddingVertical: 6,
-                      paddingHorizontal: Platform.select({ios: 6, default: 0}),
-                    }}>
-                    <Notification fill={theme.colors.white} />
-                  </View>
-                )}
-              />
+              <TouchableOpacity>
+                <View
+                  style={{
+                    paddingVertical: 6,
+                    paddingHorizontal: Platform.select({ios: 6, default: 0}),
+                  }}>
+                  <Notification fill={theme.colors.white} />
+                </View>
+              </TouchableOpacity>
             </View>
           </View>
         </Animated.View>

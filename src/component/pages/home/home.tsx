@@ -19,14 +19,7 @@ const Wrapper = styled.View`
 `;
 
 function HomeAll() {
-  let favList = useFavouriteListStore();
 
-  let watchList = useWatchListStore();
-
-  React.useEffect(() => {
-    favList.load();
-    watchList.load();
-  }, []);
 
   useFocusEffect(
     React.useCallback(() => {

@@ -1,6 +1,6 @@
 import {AxiosResponse, AxiosError} from 'axios';
 import {Movie} from './content';
-import {Token, User, Country, UserItem} from './models';
+import {Token, User, Country, UserItem, HistoryItem} from './models';
 import {UserAuthData} from './auth-data-interface';
 import {FeaturedContent} from './content';
 import {ISubscriptionItem, ISubscriptionPlan} from '.';
@@ -126,3 +126,8 @@ export type TMySubscriptionsEvent = AxiosResponse<{
 }>;
 
 export type TSubscribeToPlanEvent = AxiosResponse<{}>;
+
+
+export type TMyTransactionHistoryEvent = AxiosResponse<{
+  data: HistoryItem[];
+}>;

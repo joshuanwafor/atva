@@ -14,7 +14,6 @@ import PhoneAuth from '../../component/pages/auth/phone';
 import PhoneVerify from '../../component/pages/auth/phone-verify';
 import ArrowLeft from '../../component/atoms/icons/arrow-left';
 import CompleteRegister from '../../component/pages/auth/complete-register';
-import {HeaderBackButton} from '@react-navigation/stack';
 
 const {multiply} = Animated;
 

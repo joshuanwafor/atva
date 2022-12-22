@@ -58,10 +58,6 @@ const SetupSubscription = function () {
                 <BlurButton
                   disabled={!(selectedPlan != undefined)}
                   onPress={() => {
-                    // if (paymentMethod == undefined) {
-                    //   show('setup payment method');
-                    //   return;
-                    // }
                     initSubscriptionPlan();
                   }}
                 >
@@ -104,10 +100,6 @@ const SetupSubscription = function () {
             </View>
           ) : null}
         </Container>
-
-        {/* <Container>
-          <PaymentMethod />
-        </Container> */}
       </View>
     </View>
   );

@@ -2,13 +2,15 @@ import request from '../../config/request';
 
 import {
   TMySubscriptionsEvent,
+  TMyTransactionHistoryEvent,
   TPaymentMethodUpdateResponse,
   TPaymentUpdateEvent,
   TSubscribeToPlanEvent,
   TSubscriptionPlansEvent,
-} from '@interface/requests';
-import {ISubscriptionItem, ISubscriptionPlan} from '@interface/models';
+} from 'src/interface/requests';
+import {ISubscriptionItem, ISubscriptionPlan} from 'src/interface/models';
 import {AxiosResponse} from 'axios';
+import {HistoryItem} from 'interface/models';
 
 export const postSetupPaymentMethod = async (data: {
   number: string;
@@ -37,6 +39,13 @@ export const postSubscribeToPlan = async (
     plan: plan,
   });
 };
+
+export const getTransactionHistory =
+  async (): Promise<TMyTransactionHistoryEvent> => {
+    return request.get<{data: HistoryItem[]}, TMyTransactionHistoryEvent>(
+      '/billing/transactions',
+    );
+  };
 
 export const getMySubscriptions = async (): Promise<TMySubscriptionsEvent> => {
   return request.get<{data: ISubscriptionItem[]}, TMySubscriptionsEvent>(

@@ -44,7 +44,8 @@ function DetailsCaption({
 
   const onWatch = () => {
     if (caption == undefined) return;
-    console.log(userAuthStore.data.content?.user);
+    navigation.navigate('WatchScreen', {movie: caption});
+    return;
 
     if (
       userAuthStore.data.content?.user.isSubscribed == false &&
@@ -56,7 +57,6 @@ function DetailsCaption({
     }
 
     if (isCinema == true) {
-    
       navigation.navigate('CinemaScreen', {movie: caption});
     } else {
       navigation.navigate('WatchScreen', {movie: caption});
@@ -95,7 +95,6 @@ function DetailsCaption({
   }, [caption]);
 
   const renderActions = React.useCallback(() => {
-    
     if (false) {
       return (
         <React.Fragment>
@@ -121,7 +120,7 @@ function DetailsCaption({
   }, [isCinema, caption, isWatching, navigation, userAuthStore.data]);
 
   return (
-    <View style={{ alignItems: 'flex-end'}}>
+    <View style={{alignItems: 'flex-end'}}>
       <LinearGradient
         style={{width: '100%', height: '100%', position: 'absolute'}}
         start={{x: 0, y: 0}}
@@ -141,8 +140,6 @@ function DetailsCaption({
                   }}
                   resizeMode={FastImage.resizeMode.cover}
                   style={{
-                    // height: ms(caption.title_img.height, 0.3),
-                    // width: ms(caption.title_img.width, 0.3),
                     marginBottom: 10,
                   }}
                 />

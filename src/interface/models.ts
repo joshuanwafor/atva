@@ -7,9 +7,11 @@ export interface Price {
 }
 
 export interface HistoryItem {
-  title: string;
   amount: number;
-  id: string;
+  channel: string;
+  currency: string;
+  date: string;
+  status: string;
 }
 
 export interface History {

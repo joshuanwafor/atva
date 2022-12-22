@@ -2,7 +2,7 @@ import * as React from 'react';
 import styled from 'styled-components/native';
 import {ms} from 'react-native-size-matters';
 import format from 'date-fns/format';
-import {History} from '../../interface';
+import {History, HistoryItem} from '../../interface';
 import {getColorFromTheme, sizeScale, getFontFromTheme} from '../../utils';
 import Fire from '../atoms/icons/fire';
 
@@ -95,21 +95,22 @@ const DateText = styled.Text`
   font-family: ${getFontFromTheme('regular')};
   font-size: ${sizeScale(ms(12, 0.2), 'px')};
   text-align: left;
-  color: ${getColorFromTheme('white')};
+  color: ${getColorFromTheme('brownGrey')};
 `;
 
-function BillingHistory(props: {item: History}) {
+function BillingHistory(props: {item: HistoryItem}) {
   var format = require('format-number');
   let formattedAmount = format({prefix: '₦'})(props.item.amount ?? '');
   function renderIcon() {
-    switch (props.item.type) {
-      case 'ticket':
-        // TODO: replace with the right icon
-        return <Fire fill="#fff" />;
-      case 'subscription':
-        return <Fire fill="#fff" />;
-      // no-default
-    }
+    return <Fire fill="#fff" />;
+    // switch (props.item.type) {
+    //   case 'ticket':
+    //     // TODO: replace with the right icon
+    //     return <Fire fill="#fff" />;
+    //   case 'subscription':
+    //     return <Fire fill="#fff" />;
+    //   // no-default
+    // }
   }
   return (
     <Wrapper>
@@ -117,30 +118,14 @@ function BillingHistory(props: {item: History}) {
         <HeaderTitleWrapper>
           {renderIcon()}
           <HeaderTitleContentWrapper>
-            <Title>{props.item.title}</Title>
-            <DateText>
-              {format(new Date(props.item.createdAt), 'do MMM ,yyyy')}
-            </DateText>
+            <Title>{'Subscription'}</Title>
+            <DateText>{new Date(props.item.date).toDateString()}</DateText>
           </HeaderTitleContentWrapper>
         </HeaderTitleWrapper>
         <HeaderPrice>
-          {format({prefix: '₦'})(props.item.amount.price ?? '')}
+          {format({prefix: '₦'})(props.item.amount ?? '')}
         </HeaderPrice>
       </HeaderWrapper>
-      <ItemWrapper>
-        {props.item.items.map((item) => (
-          <Item key={item.id}>
-            <ItemTitle>{item.title}</ItemTitle>
-            <ItemPrice>{format({prefix: '₦'})(item.amount ?? '')}</ItemPrice>
-          </Item>
-        ))}
-      </ItemWrapper>
-      <FooterWrapper>
-        <TxRefTitle>{`TXREF: ${props.item.txref}`}</TxRefTitle>
-        <TotalPrice>
-          {format({prefix: '₦'})(props.item.total.price ?? '')}
-        </TotalPrice>
-      </FooterWrapper>
     </Wrapper>
   );
 }

@@ -1,4 +1,4 @@
-import {Plans, ISubscriptionPlan, ISubscriptionItem} from '@interface/models';
+import {Plans, ISubscriptionPlan, ISubscriptionItem} from 'src/interface/models';
 import {
   getMySubscriptions,
   getSubscriptionPlans,

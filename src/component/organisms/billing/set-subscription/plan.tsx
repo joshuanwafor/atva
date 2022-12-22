@@ -1,7 +1,7 @@
 import * as React from 'react';
 //@ts-ignore
 import styled from 'styled-components/native';
-import Animated, {Easing} from 'react-native-reanimated';
+import Animated, {Easing, EasingNode} from 'react-native-reanimated';
 import {useTransition, interpolateColor} from 'react-native-redash';
 import {s, ms} from 'react-native-size-matters';
 import {
@@ -14,6 +14,7 @@ import TouchableItem from '../../../molecules/touchable-item';
 import {ISubscriptionPlan, PlanType} from '../../../../interface';
 import format from 'format-number';
 import {AppFormatNumber} from '../../../../config/utils';
+import {Box, VStack} from 'native-base';
 
 const PlanWrapper = styled.View`
   border-radius: 6px;
@@ -29,7 +30,7 @@ const PlanInnerWrapper = styled(Animated.View)`
   padding-vertical: 15px;
   padding-horizontal: 15px;
   border-width: 2px;
-  border-color: red;
+  border-color: gray;
   position: relative;
   margin-right: 10px;
 `;
@@ -86,29 +87,22 @@ const Plan = React.memo(function ({
   onPress: () => void;
   active: boolean;
 }) {
-  const transition = useTransition(active, {
-    duration: 200,
-    //@ts-ignore
-    easing: Easing.inOut(Easing.ease),
-  });
-
-  // @ts-ignore
-  const borderColor: Animated.Node<string> = interpolateColor(transition, {
-    inputRange: [0, 1],
-    outputRange: [theme.colors.white30, theme.colors.alt],
-  });
-
   return (
     <PlanWrapper>
       <TouchableItem
         accessible
         accessibilityRole="button"
         accessibilityLabel={`Select ${plan.name} plan`}
-      
         delayPressIn={0}
-        onPress={onPress}
-      >
-        <PlanInnerWrapper style={{borderColor}}>
+        onPress={onPress}>
+        <VStack
+          justifyContent={'center'}
+          p="12px"
+          borderColor={active == true ? 'pink.500' : 'gray.500'}
+          borderWidth={2}
+          h="100%"
+          rounded={'md'}
+          mr="12px">
           <PlanTitle>{plan.name.toUpperCase()}</PlanTitle>
           <PlanPrice>{AppFormatNumber(plan.amount ?? '')}</PlanPrice>
           <PlanFreeTime>30 days free</PlanFreeTime>
@@ -117,7 +111,7 @@ const Plan = React.memo(function ({
               <PlanTagTitle>BEST VALUE</PlanTagTitle>
             </PlanTagWrapper>
           )}
-        </PlanInnerWrapper>
+        </VStack>
       </TouchableItem>
     </PlanWrapper>
   );

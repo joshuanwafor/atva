@@ -6,7 +6,7 @@ import Orientation from 'react-native-orientation-locker';
 import {theme} from '../../style/theme';
 import {sizeScale} from '../../utils';
 import Background from '../molecules/background';
-import BillingTab from '../../app/navigator/billing-tab';
+import BillingHistories from 'src/component/pages/billing/history';
 
 const Wrapper = styled.View`
   width: 100%;
@@ -30,7 +30,7 @@ function BillingTemplate({header}: {header: React.ReactChild}) {
         showHideTransition="slide"
       />
       <Wrapper>{header}</Wrapper>
-      <BillingTab />
+      <BillingHistories />
     </Background>
   );
 }

@@ -19,6 +19,7 @@ import {useBillingStore} from '../../store/data/billing';
 import {NavigationProp, useNavigation} from '@react-navigation/native';
 import {RootStackParameterList} from 'src/interface/navigation';
 import {userAuthStore} from '../../store/data/user-auth';
+import {Box} from 'native-base';
 function AppTab() {
   let billingStore = useBillingStore();
 
@@ -40,10 +41,6 @@ function AppTab() {
           tabBarButton: ({children, style, onPress, ...props}) => (
             <TouchableRipple
               rippleColor={theme.colors.white70}
-              accessibilityLabel="Tab Button"
-              accessibilityTraits={'button'}
-              accessibilityComponentType="button"
-              accessibilityRole="button"
               rippleSequential={true}
               rippleFades={true}
               rippleContainerBorderRadius={6}
@@ -60,6 +57,35 @@ function AppTab() {
               </View>
             </TouchableRipple>
           ),
+          ...{
+            tabBarActiveTintColor: theme.colors.pale,
+            tabBarInactiveTintColor: theme.colors.brownishGrey,
+            tabBarInactiveBackgroundColor: 'transparent',
+            tabBarActiveBackgroundColor: 'rgba(229, 225, 223, 0.03)',
+            tabBarStyle: {
+              backgroundColor: theme.colors.black,
+              paddingHorizontal: 0,
+              borderTopWidth: 0,
+              paddingVertical: 6,
+              borderTopLeftRadius: 6,
+              borderTopRightRadius: 6,
+              borderWidth: 0,
+              elevation: 0,
+              borderRadius: 6,
+            },
+
+            tabBarItemStyle: {
+              borderRadius: 6,
+              height: 50,
+              paddingBottom: 4,
+              paddingTop: 4,
+            },
+            tabBarLabelStyle: {
+              fontSize: ms(11, 0.4),
+              fontFamily: theme.font.medium,
+            },
+            tabBarLabelPosition: 'below-icon',
+          },
         }}
         tabBar={props => (
           <View
@@ -71,36 +97,7 @@ function AppTab() {
             }}>
             <BottomTabBar {...props} />
           </View>
-        )}
-        tabBarOptions={{
-          activeTintColor: theme.colors.pale,
-          inactiveTintColor: theme.colors.brownishGrey,
-          inactiveBackgroundColor: 'transparent',
-          activeBackgroundColor: 'rgba(229, 225, 223, 0.05)',
-          style: {
-            backgroundColor: theme.colors.black,
-            paddingHorizontal: 0,
-            paddingVertical: 0,
-            borderTopColor: theme.colors.white10,
-            borderColor: 'transparent',
-            borderTopLeftRadius: 6,
-            borderTopRightRadius: 6,
-            borderWidth: StyleSheet.hairlineWidth,
-            elevation: 0,
-            borderRadius: 6,
-          },
-          tabStyle: {
-            borderRadius: 6,
-            height: 56,
-            paddingBottom: 5,
-            paddingTop: 5,
-          },
-          labelStyle: {
-            fontSize: ms(11, 0.4),
-            fontFamily: theme.font.medium,
-          },
-          labelPosition: 'below-icon',
-        }}>
+        )}>
         <Tab.Screen
           name="Home"
           component={HomeStack}
@@ -109,6 +106,7 @@ function AppTab() {
               <HomeIcon fill={color} width={20} height={20} />
             ),
             title: 'Home',
+            headerShown: false,
           }}
         />
         <Tab.Screen
@@ -120,15 +118,6 @@ function AppTab() {
             ),
           }}
         />
-        {/* <Tab.Screen
-          name="Upcoming"
-          component={UpComingPage}
-          options={{
-            tabBarIcon: ({color}) => (
-              <Upcoming fill={color} width={20} height={20} />
-            ),
-          }}
-        /> */}
         <Tab.Screen
           name="Downloads"
           component={DownloadsStack}

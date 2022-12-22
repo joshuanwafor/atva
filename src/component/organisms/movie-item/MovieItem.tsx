@@ -33,6 +33,7 @@ function MovieItem({item}: TProps) {
   const navigation = useNavigation<HomeScreenNavigationProp>();
 
   function onNavigateMore() {
+  
     navigation.push('Details', {
       movie: item,
       movie_id: item.id,

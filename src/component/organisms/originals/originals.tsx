@@ -24,6 +24,7 @@ function Originals({items}: {items: MinimalContent[]}) {
               isCinema: false,
               isTvShow: false,
               isWatching: false,
+              title: item.title,
             });
           }}
         />
