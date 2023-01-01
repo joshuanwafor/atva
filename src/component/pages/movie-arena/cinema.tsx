@@ -89,6 +89,7 @@ export const CinemaScreen: React.FC<{}> = () => {
       <React.Fragment>
         <MainVideoPlayer
           link={streamUrl ?? ''}
+      
           isLandScape={false}
           onBackPress={() => {
             Orientation.lockToPortrait();

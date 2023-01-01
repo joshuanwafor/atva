@@ -25,7 +25,15 @@ import Orientation from 'react-native-orientation-locker';
 
 const TESTURL =
   'https://bitdash-a.akamaihd.net/content/sintel/hls/playlist.m3u8';
-export const VideoPlayer = ({durationInSec}: {durationInSec: number}) => {
+export const VideoPlayer = ({
+  durationInSec,
+  title,
+  url,
+}: {
+  durationInSec: number;
+  title: string;
+  url: string;
+}) => {
   const navigation = useNavigation<NavigationProp<RootStackParameterList>>();
   const [playbackURL, setPlaybackURL] = React.useState('');
   const [isConnected, setIsConnected] = React.useState(false);
@@ -47,9 +55,6 @@ export const VideoPlayer = ({durationInSec}: {durationInSec: number}) => {
   }
 
   function forwardAction() {
-    if (currentTime + 10 < durationInSec) {
-      return;
-    }
     seekAction(currentTime + 10);
   }
   function backwardAction() {
@@ -117,18 +122,18 @@ export const VideoPlayer = ({durationInSec}: {durationInSec: number}) => {
         style={{
           flex: 1,
           height: '100%',
-          backgroundColor: 'orange',
+          backgroundColor: 'black',
           width: '100%',
         }}>
         <Video
-          maxBitRate={300000}
+          maxBitRate={100000}
           paused={isPaused}
           // repeat={true}
           fullscreenOrientation="landscape"
           fullscreen={false}
           currentTime={currentTime}
           source={{
-            uri: playbackURL,
+            uri: url,
           }} // Can be a URL or a local file.
           ref={movieRef} // Store reference
           onBuffer={() => {
@@ -198,12 +203,13 @@ export const VideoPlayer = ({durationInSec}: {durationInSec: number}) => {
                 justifyContent="space-between">
                 <TouchableOpacity
                   onPress={() => {
-                    navigation.goBack();
+                    setIsPaused(true);
                     Orientation.lockToPortrait();
+                    navigation.goBack();
                   }}>
                   <ArrowLeft weight="regular" color="white" size={30} />
                 </TouchableOpacity>
-                <AppTypography>Video Title</AppTypography>
+                <AppTypography>{title}</AppTypography>
                 <DotsThreeVertical weight="regular" color="white" size={30} />
               </HStack>
             </Box>
@@ -297,9 +303,9 @@ function OnNoInternetConnection() {
         <AppTypographySemiBold textAlign={'center'}>
           No Internet connectivity
         </AppTypographySemiBold>
-        <Center>
+        {/* <Center>
           <Button>Network Settings</Button>
-        </Center>
+        </Center> */}
       </VStack>
       <Box></Box>
     </VStack>

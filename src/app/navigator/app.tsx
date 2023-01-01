@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {View} from 'react-native';
+import {TouchableOpacity, View} from 'react-native';
 import {Animated} from 'react-native';
 import {ms} from 'react-native-size-matters';
 import {Stack} from './stack';
@@ -29,6 +29,8 @@ import {useInitHook} from '../../hooks/init';
 import {} from '@react-navigation/stack';
 import ViewMovie from 'pages/details/ViewMovie';
 import {Box} from 'native-base';
+import SearchResult from 'src/component/pages/search/search-result';
+import FavoriteMovies from 'pages/user-lists/favorites/movies';
 
 const {multiply} = Animated;
 
@@ -40,7 +42,6 @@ function MainApp() {
   React.useEffect(() => {
     loadAppEnv();
   }, []);
-
 
   return (
     <Host>
@@ -74,6 +75,41 @@ function MainApp() {
             title: 'New Debit card',
           }}
         />
+
+        <Stack.Screen
+          name="SearchResult"
+          component={SearchResult}
+          options={{
+            headerShown: true,
+            title: 'Watch List',
+          }}
+        />
+
+        <Stack.Screen
+          name="Details"
+          component={Details}
+          options={({route}) => ({
+            headerShown: true,
+            headerTransparent: true,
+            title: route.params.title ?? 'No title',
+            headerLeftContainerStyle: {
+              zIndex: 99999,
+            },
+            headerRightContainerStyle: {
+              zIndex: 99999,
+            },
+            headerLeft: props => (
+              <TouchableOpacity {...props}>
+                <View style={{paddingLeft: 10}}>
+                  <ArrowLeft width={22} height={22} fill={theme.colors.white} />
+                </View>
+              </TouchableOpacity>
+            ),
+            headerRight: props => <DetailHeaderRight />,
+            headerTitle: () => null,
+          })}
+        />
+
         <Stack.Screen
           name="Watchlist"
           component={Watchlist}
@@ -84,7 +120,7 @@ function MainApp() {
         />
         <Stack.Screen
           name="Favorites"
-          component={Favorites}
+          component={FavoriteMovies}
           options={{
             headerShown: true,
             title: 'Favorites',

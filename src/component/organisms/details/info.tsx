@@ -5,6 +5,7 @@ import {ms, s} from 'react-native-size-matters';
 import {sizeScale, getFontFromTheme, getColorFromTheme} from '../../../utils';
 import {theme} from '../../../style/theme';
 import {MovieInfo, MovieMeta} from '../../../interface';
+import {Box} from 'native-base';
 
 const Wrapper = styled.View`
   width: 100%;
@@ -134,10 +135,11 @@ const AboutInfo = React.memo(function ({
       </AboutInfoWrapper>
 
       <MetaWrapper>
-        {info.meta.map((meta) => (
+        {info.meta.map(meta => (
           <Meta meta={meta} key={meta.id} />
         ))}
       </MetaWrapper>
+      <Box height={100}></Box>
     </Wrapper>
   );
 });

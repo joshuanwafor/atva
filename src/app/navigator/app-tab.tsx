@@ -7,19 +7,20 @@ import {ms} from 'react-native-size-matters';
 import Tab from './tab';
 import {theme} from '../../style/theme';
 import HomeStack from './home-stack';
-import SearchStack from './search-stack';
 import Profile from '../../component/pages/profile';
 import HomeIcon from '../../component/atoms/icons/home';
 import Search from '../../component/atoms/icons/search';
 // import Upcoming from '../../component/atoms/icons/upcoming';
 import User from '../../component/atoms/icons/user';
 import Download from '../../component/atoms/icons/download';
-import DownloadsStack from './downloads-stack';
 import {useBillingStore} from '../../store/data/billing';
 import {NavigationProp, useNavigation} from '@react-navigation/native';
 import {RootStackParameterList} from 'src/interface/navigation';
 import {userAuthStore} from '../../store/data/user-auth';
 import {Box} from 'native-base';
+import Downloads from 'src/component/pages/downloads';
+import SearchHome from 'src/component/pages/search/search-home';
+import SearchResult from 'src/component/pages/search/search-result';
 function AppTab() {
   let billingStore = useBillingStore();
 
@@ -111,7 +112,7 @@ function AppTab() {
         />
         <Tab.Screen
           name="Search"
-          component={SearchStack}
+          component={SearchHome}
           options={{
             tabBarIcon: ({color}) => (
               <Search fill={color} width={20} height={20} />
@@ -120,7 +121,7 @@ function AppTab() {
         />
         <Tab.Screen
           name="Downloads"
-          component={DownloadsStack}
+          component={Downloads}
           options={{
             tabBarIcon: ({color}) => (
               <Download fill={color} width={20} height={20} />

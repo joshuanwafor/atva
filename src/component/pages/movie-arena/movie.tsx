@@ -27,25 +27,25 @@ export const WatchScreen: React.FC<{}> = () => {
 
   React.useEffect(() => {
     Orientation.lockToLandscape();
-    // handleScreenOrientation('lock-landscape');
-    // getContentStreamLink(movie.id)
-    //   .then((res) => {
-    //     console.log(res.data);
-    //     if (res.data != null || res.data != undefined) {
-    //       if (res.data.url == null) {
-    //         navigation.goBack();
-    //         show("You don't have access to this movie yet.");
-    //         return;
-    //       }
-    //       updateStreamUrl(res.data.url);
-    //     }
-    //   })
-    //   .catch((err) => {
-    //     console.log(err);
 
-    //     navigation.goBack();
-    //     show(err.data.message??'Something went wrong. Ensure ');
-    //   });
+    getContentStreamLink(movie.id)
+      .then(res => {
+        console.log(res.data);
+        if (res.data != null || res.data != undefined) {
+          if (res.data.url == null) {
+            navigation.goBack();
+            show("You don't have access to this movie yet.");
+            return;
+          }
+          updateStreamUrl(res.data.url);
+        }
+      })
+      .catch(err => {
+        console.log(err);
+
+        navigation.goBack();
+        show(err.data.message ?? 'Something went wrong. Ensure ');
+      });
 
     return () => {
       Orientation.lockToPortrait();
