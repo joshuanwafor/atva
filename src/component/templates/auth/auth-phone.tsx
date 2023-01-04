@@ -1,7 +1,6 @@
 import * as React from 'react';
 import {ReactChild} from 'react';
 import {View, Dimensions} from 'react-native';
-import {useHeaderHeight} from '@react-navigation/stack';
 import Orientation from 'react-native-orientation-locker';
 import {KeyboardAvoidingView, Platform, StatusBar} from 'react-native';
 import {Wrapper} from './style';
@@ -19,7 +18,6 @@ function AuthPhoneTemplate({
     Orientation.lockToPortrait();
   }, []);
   const {height} = Dimensions.get('window');
-  const headerHeight = useHeaderHeight();
   return (
     <View style={{height: height}}>
       {modal}
@@ -34,7 +32,7 @@ function AuthPhoneTemplate({
       <Background>
         <KeyboardAvoidingView
           style={{flex: 1}}
-          keyboardVerticalOffset={headerHeight + (StatusBar.currentHeight || 0)}
+          keyboardVerticalOffset={ (StatusBar.currentHeight || 0)}
           behavior={Platform.select({ios: 'padding'})}>
           <Wrapper>{children}</Wrapper>
           <ButtonWrapper>{button}</ButtonWrapper>

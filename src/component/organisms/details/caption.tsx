@@ -57,8 +57,10 @@ function DetailsCaption({
     }
 
     if (isCinema == true) {
+        //@ts-ignore
       navigation.navigate('CinemaScreen', {movie: caption});
     } else {
+      //@ts-ignore
       navigation.navigate('WatchScreen', {movie: caption});
       Orientation.lockToLandscape();
     }

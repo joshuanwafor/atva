@@ -20,11 +20,16 @@ import {userAuthStore} from '../../store/data/user-auth';
 import {Box} from 'native-base';
 import Downloads from 'src/component/pages/downloads';
 import SearchHome from 'src/component/pages/search/search-home';
-import SearchResult from 'src/component/pages/search/search-result';
+import ComingSoonScreen from 'src/component/pages/coming-soon';
+import {MainSearchInput} from 'src/component/organisms/search-widgets/MainSearchInput';
+import {useSafeAreaInsets} from 'react-native-safe-area-context';
+import Upcoming from 'src/component/atoms/icons/upcoming';
 function AppTab() {
   let billingStore = useBillingStore();
 
   let navigation = useNavigation<NavigationProp<RootStackParameterList>>();
+
+  const insets = useSafeAreaInsets();
 
   // React.useEffect(() => {
   //   setTimeout(() => {
@@ -114,12 +119,23 @@ function AppTab() {
           name="Search"
           component={SearchHome}
           options={{
+            headerShown: false,
             tabBarIcon: ({color}) => (
               <Search fill={color} width={20} height={20} />
             ),
           }}
         />
         <Tab.Screen
+          name="Upcoming"
+          component={ComingSoonScreen}
+          options={{
+            headerShown: false,
+            tabBarIcon: ({color}) => (
+              <Upcoming fill={color} width={20} height={20} />
+            ),
+          }}
+        />
+        {/* <Tab.Screen
           name="Downloads"
           component={Downloads}
           options={{
@@ -127,7 +143,7 @@ function AppTab() {
               <Download fill={color} width={20} height={20} />
             ),
           }}
-        />
+        /> */}
         <Tab.Screen
           name="Me"
           component={Profile}

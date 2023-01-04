@@ -12,6 +12,9 @@ import {getContent} from '../../../services/content/content';
 import Snackbar from 'react-native-snackbar';
 import Loader from '../../atoms/loader';
 import {MoLoadingFilled} from '../../molecules/loading';
+import {SafeAreaView} from 'react-native-safe-area-context';
+import {MainSearchInput} from 'src/component/organisms/search-widgets/MainSearchInput';
+import {Box} from 'native-base';
 
 const TabTemplate = styled.View`
   width: 100%;
@@ -41,7 +44,7 @@ function SearchHome() {
 
   function searchByFilter(cat: any) {
     getContent({cat: cat})
-      .then((res) => {
+      .then(res => {
         setFiltered(res.data.docs);
         if (res.data.docs.length == 0) {
           setActiveCategory(undefined);
@@ -53,12 +56,15 @@ function SearchHome() {
       });
   }
   return (
-    <TabTemplate>
+    <SafeAreaView>
+      <Box height={'50px'}>
+        <MainSearchInput />
+      </Box>
       <CategoryList
         items={(categories ?? []).map((v: any) => {
           return {id: v.id, title: v.title};
         })}
-        onPress={(item) => {
+        onPress={item => {
           setActiveCategory(item.id);
           searchByFilter(activeCategory);
         }}
@@ -75,15 +81,16 @@ function SearchHome() {
         snapToStart={true}
         disableIntervalMomentum={true}
         ItemSeparatorComponent={() => <View style={{height: 20}} />}
-        keyExtractor={(item) => item.id ?? ''}
+        keyExtractor={item => item.id ?? ''}
         style={
           {
+            marginTop:0
             // marginTop: 5,
             // marginBottom: 20,
           }
         }
       />
-    </TabTemplate>
+    </SafeAreaView>
   );
 }
 

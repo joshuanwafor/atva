@@ -29,9 +29,9 @@ function CategoryList({
       ItemSeparatorComponent={() => <View style={{width: 10}} />}
       keyExtractor={(item) => item.id}
       style={{
-        marginTop: 10,
-        marginBottom: 5,
-        height: 35,
+        marginTop: 12,
+        paddingBottom: 12,
+        height: 52,
       }}
       contentContainerStyle={{paddingHorizontal: s(12)}}
     />

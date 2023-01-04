@@ -1,8 +1,6 @@
 import * as React from 'react';
 import FastImage from 'react-native-fast-image';
 import {useNavigation} from '@react-navigation/native';
-// @ts-ignore
-import Video from 'react-native-video';
 import {
   Image,
   CardWrapper,
@@ -33,7 +31,6 @@ function MovieItem({item}: TProps) {
   const navigation = useNavigation<HomeScreenNavigationProp>();
 
   function onNavigateMore() {
-  
     navigation.push('Details', {
       movie: item,
       movie_id: item.id,

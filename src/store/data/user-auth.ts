@@ -22,6 +22,7 @@ class Store {
   @action
   initialize() {
     this.loadContent();
+  
   }
   @action
   async loadContent(force = false): Promise<User | undefined> {

@@ -13,6 +13,7 @@ const HomeAction = React.memo(function ({
   innerRef: React.RefObject<Modalize>;
   onChange: (section: HomeSections) => void;
 }) {
+ 
   return (
     <Portal>
       <Modalize

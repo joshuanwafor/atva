@@ -1,6 +1,5 @@
 import * as React from 'react';
 import {ReactChild} from 'react';
-import {useHeaderHeight} from '@react-navigation/stack';
 import Orientation from 'react-native-orientation-locker';
 import {KeyboardAvoidingView, Platform, StatusBar} from 'react-native';
 import {Wrapper} from './style';
@@ -16,7 +15,6 @@ function AuthProcessTemplate({
   React.useEffect(() => {
     Orientation.lockToPortrait();
   }, []);
-  const headerHeight = useHeaderHeight();
   return (
     <Background>
       <StatusBar
@@ -29,7 +27,7 @@ function AuthProcessTemplate({
       />
       <KeyboardAvoidingView
         style={{flex: 1}}
-        keyboardVerticalOffset={headerHeight + (StatusBar.currentHeight || 0)}
+        keyboardVerticalOffset={(StatusBar.currentHeight || 0)}
         behavior={Platform.select({ios: 'padding'})}>
         <Wrapper>{children}</Wrapper>
         <ButtonWrapper>{button}</ButtonWrapper>

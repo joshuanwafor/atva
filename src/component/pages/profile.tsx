@@ -94,7 +94,7 @@ function Profile() {
           subtitle="Liked TV shows/movies or artist"
           icon={<Heart fill="#fff" width={18} height={18} />}
           onPress={() => {
-            // navigation.navigate('Favorites')
+            navigation.navigate('Favorites')
           }}
           actionType="next"
         />

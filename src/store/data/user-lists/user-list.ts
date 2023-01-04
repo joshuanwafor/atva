@@ -23,6 +23,7 @@ export class UserListStore {
   @action
   async load() {
     let res = await getUserList(this.list_type);
+    console.log(res.data)
     runInAction(() => {
       if (res.status == 200) {
         this.data.loaded = true;

@@ -36,7 +36,7 @@ export const VideoPlayer = ({
 }) => {
   const navigation = useNavigation<NavigationProp<RootStackParameterList>>();
   const [playbackURL, setPlaybackURL] = React.useState('');
-  const [isConnected, setIsConnected] = React.useState(false);
+  const [isConnected, setIsConnected] = React.useState(true);
   const [isPlaying, setIsPlaying] = React.useState(true);
   const [allowRepeat, setAllowRepeat] = React.useState(false);
   const [isPaused, setIsPaused] = React.useState(false);
@@ -126,7 +126,7 @@ export const VideoPlayer = ({
           width: '100%',
         }}>
         <Video
-          maxBitRate={100000}
+          maxBitRate={1000}
           paused={isPaused}
           // repeat={true}
           fullscreenOrientation="landscape"
@@ -174,7 +174,7 @@ export const VideoPlayer = ({
             left: 0,
             bottom: 0,
             right: 0,
-            backgroundColor: 'orange',
+            backgroundColor: 'black',
           }}
           resizeMode="cover"
         />

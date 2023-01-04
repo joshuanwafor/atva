@@ -17,6 +17,7 @@ export const MainVideoPlayer = ({
   const route = useRoute<CinemaScreenRouteProp>();
   let {
     params: {movie},
+    
   } = route;
   //@ts-ignore
   let hr = movie?.duration?.hour ?? 0;

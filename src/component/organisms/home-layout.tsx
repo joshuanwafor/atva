@@ -1,7 +1,6 @@
 import * as React from 'react';
 import Animated from 'react-native-reanimated';
 import styled from 'styled-components/native';
-import {onScrollEvent} from 'react-native-redash';
 import {theme} from '../../style/theme';
 import HomeCover from '../organisms/home-caption/home-cover';
 import {getDefaultCoverHeight, wait} from '../../utils';
@@ -10,6 +9,7 @@ import {MinimalContent} from '../../interface/content';
 import {MoLoadingFilled} from '../molecules/loading/index';
 import {useInitHook} from '../../hooks/init';
 import {RefreshControl} from 'react-native';
+import {userAuthStore} from 'src/store/data/user-auth';
 
 const Wrapper = styled.View`
   flex: 1;
@@ -51,6 +51,10 @@ const HomeLayout = function ({
 
   const render = React.useCallback(
     function () {
+      if (userAuthStore.data.loading == true) {
+        return <MoLoadingFilled />;
+      }
+
       if (caption != undefined || caption == null) {
         let coverPhoto = '';
         if (caption?.banner != null || caption?.banner != undefined) {

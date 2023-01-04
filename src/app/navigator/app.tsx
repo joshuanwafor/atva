@@ -31,6 +31,9 @@ import ViewMovie from 'pages/details/ViewMovie';
 import {Box} from 'native-base';
 import SearchResult from 'src/component/pages/search/search-result';
 import FavoriteMovies from 'pages/user-lists/favorites/movies';
+import {AppTypography} from 'src/component/atoms/typographyv2';
+import {searchManager} from 'src/store/data/content/search';
+import {getColorFromTheme} from 'src/utils';
 
 const {multiply} = Animated;
 
@@ -81,7 +84,14 @@ function MainApp() {
           component={SearchResult}
           options={{
             headerShown: true,
-            title: 'Watch List',
+
+            headerTitle: () => {
+              return (
+                <AppTypography style={{marginLeft: 12}}>
+                  {searchManager.term}
+                </AppTypography>
+              );
+            },
           }}
         />
 

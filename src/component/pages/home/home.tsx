@@ -19,8 +19,6 @@ const Wrapper = styled.View`
 `;
 
 function HomeAll() {
-
-
   useFocusEffect(
     React.useCallback(() => {
       if (Platform.OS === 'android') {
@@ -33,14 +31,12 @@ function HomeAll() {
   const [activeSection, setActiveSection] = React.useState<HomeSections>(
     HomeSections.HOME,
   );
-  const y = React.useRef(new Animated.Value<number>(0));
 
   const showActionRef = () => {
     actionRef.current?.open();
   };
 
   const changeHomeSection = (section: HomeSections) => {
-  
     setActiveSection(section);
     actionRef.current?.close();
   };
@@ -48,9 +44,9 @@ function HomeAll() {
   const renderHomeSection = function () {
     switch (activeSection) {
       case HomeSections.HOME:
-        return <HomeHome  />;
+        return <HomeHome />;
       case HomeSections.CINEMA:
-        return <HomeCinema  />;
+        return <HomeCinema />;
       case HomeSections.MOVIES:
         return <HomeMovies />;
       case HomeSections.SERIES:
@@ -63,11 +59,7 @@ function HomeAll() {
   return (
     <Wrapper>
       <StatusBar backgroundColor="transparent" translucent />
-      <Header
-        activeSection={activeSection}
-        y={y.current}
-        showAction={showActionRef}
-      />
+      <Header activeSection={activeSection} showAction={showActionRef} />
       {renderHomeSection()}
       <HomeAction innerRef={actionRef} onChange={changeHomeSection} />
     </Wrapper>

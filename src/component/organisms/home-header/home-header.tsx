@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {View, StyleSheet, Platform} from 'react-native';
+import {View, StyleSheet, Platform, StatusBar} from 'react-native';
 import Animated, {interpolate, Extrapolate} from 'react-native-reanimated';
 import {interpolateColor} from 'react-native-redash';
 import {ms} from 'react-native-size-matters';
@@ -12,15 +12,13 @@ import {getDefaultHeaderHeight} from '../../../utils';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 
 const Header = React.memo(function ({
-  y,
   showAction,
   activeSection,
 }: {
-  y: Animated.Value<number>;
   showAction: () => void;
   activeSection: HomeSections;
 }) {
-  const maxHeaderHeight = getDefaultHeaderHeight(20);
+  const maxHeaderHeight = getDefaultHeaderHeight(15);
 
   return (
     <React.Fragment>
@@ -37,7 +35,7 @@ const Header = React.memo(function ({
         <Animated.View
           pointerEvents="none"
           style={{
-            height: 20,
+            height: StatusBar.currentHeight,
             zIndex: 1,
           }}
         />

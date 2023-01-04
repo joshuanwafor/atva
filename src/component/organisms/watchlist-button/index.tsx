@@ -57,7 +57,18 @@ export const WatchlistActionButtonVert: React.FC<{
   let myWatchlistStore = useWatchListStore();
 
   if (myWatchlistStore.data.loading == true) {
-    return <BlurButton isLoading></BlurButton>;
+    return (
+      <ActionsWrapper>
+        <IconButton
+          icon={<Plus fill="#fff" width={16} height={16} />}
+          onPress={() => {
+            let id = movie?.id ?? '';
+            myWatchlistStore.add(id, movie?.title ?? '');
+          }}>
+          Watchlist
+        </IconButton>
+      </ActionsWrapper>
+    );
   }
 
   let index = myWatchlistStore.data.items.findIndex(v => v.itemId == movie.id);

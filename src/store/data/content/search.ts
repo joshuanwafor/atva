@@ -5,6 +5,9 @@ import {getContent} from '../../../services/content/content';
 
 class SearchStore {
   @observable
+  term: string = '';
+
+  @observable
   data: {
     loading: boolean;
     result?: Movie[];
@@ -22,6 +25,7 @@ class SearchStore {
     try {
       let response = await getContent({q: query});
       runInAction(() => {
+        this.term = query;
         this.data.result = response.data.docs;
       });
     } catch (e) {
@@ -30,7 +34,9 @@ class SearchStore {
   };
 }
 
-export const _Context = createContext<SearchStore>(new SearchStore());
+export const searchManager = new SearchStore();
+
+export const _Context = createContext<SearchStore>(searchManager);
 
 export const useSearchStore = (): SearchStore => {
   return useContext<SearchStore>(_Context);

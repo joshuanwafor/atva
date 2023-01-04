@@ -1,7 +1,7 @@
 import * as React from 'react';
 import styled from 'styled-components/native';
 import {s} from 'react-native-size-matters';
-import {useHeaderHeight} from '@react-navigation/stack';
+import {} from '@react-navigation/stack';
 import Orientation from 'react-native-orientation-locker';
 import {ScrollView} from 'react-native-gesture-handler';
 import {KeyboardAvoidingView, Platform, StatusBar} from 'react-native';
@@ -32,7 +32,7 @@ function AccountTemplate({
   React.useEffect(() => {
     Orientation.lockToPortrait();
   }, []);
-  const headerHeight = useHeaderHeight();
+
   return (
     <Background edges={['bottom']}>
       <StatusBar
@@ -45,7 +45,7 @@ function AccountTemplate({
       />
       <KeyboardAvoidingView
         style={{flex: 1}}
-        keyboardVerticalOffset={headerHeight + (StatusBar.currentHeight || 0)}
+        keyboardVerticalOffset={ (StatusBar.currentHeight || 0)}
         behavior={Platform.select({ios: 'padding'})}>
         <ScrollView
           showsHorizontalScrollIndicator={false}

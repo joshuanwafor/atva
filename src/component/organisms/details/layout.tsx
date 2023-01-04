@@ -79,8 +79,7 @@ const DetailsLayout = function ({
 
   return (
     <PageWrapper>
-      <StatusBar backgroundColor="transparent" translucent />
-
+ 
       <DetailsCover
         y={y.current}
         cover={
