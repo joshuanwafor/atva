@@ -26,7 +26,7 @@ export function Navigator({token}: {token?: string}) {
 
 
   return (
-    <SafeAreaView style={{height:"100%", backgroundColor:"orange"}}>
+    <SafeAreaView style={{height:"100%"}}>
       <NavigationContainer theme={MyTheme}>
         {token ? <MainApp /> : <AuthApp />}
       </NavigationContainer>

@@ -48,9 +48,12 @@ function MainApp() {
 
   return (
     <Host>
-      <Stack.Navigator initialRouteName="MainApp" screenOptions={{}}>
+      <Stack.Navigator initialRouteName="MainApp" screenOptions={{
+      
+      }}>
         <Stack.Screen
           name="MainApp"
+
           component={AppTab}
           options={{headerShown: false}}
         />
