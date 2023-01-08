@@ -42,6 +42,8 @@ export const CinemaScreen: React.FC<{}> = () => {
             show("You don't have access to this movie yet.");
             return;
           }
+          Orientation.lockToLandscape();
+
           setCanWatch(true);
           updateStreamUrl(res.data.url);
         }
@@ -54,25 +56,27 @@ export const CinemaScreen: React.FC<{}> = () => {
 
     return () => {
       //
+      Orientation.lockToPortrait();
     };
   }, []);
 
-  React.useEffect(() => {
-    DeviceEventEmitter.addListener('hardwareBackPress', () => {
-      console.log('detected back button');
-    });
+  // React.useEffect(() => {
+  //   DeviceEventEmitter.addListener('hardwareBackPress', () => {
+  //     console.log('detected back button');
+  //   });
 
-    let timerID = setInterval(() => {
-      if (userAuthStore.data.content?.user.isSubscribed == false) {
-        //@ts-ignore
-        navigation.navigate('CompleteRegister');
-      }
-    }, 5000);
+  //   let timerID = setInterval(() => {
+  //     if (userAuthStore.data.content?.user.isSubscribed == false) {
+  //       //@ts-ignore
+  //       navigation.navigate('CompleteRegister');
+  //     }
+  //   }, 5000);
 
-    return () => {
-      clearInterval(timerID);
-    };
-  }, []);
+  //   return () => {
+  //     clearInterval(timerID);
+  //     Orientation.lockToPortrait();
+  //   };
+  // }, []);
 
   if (canWatch == false) {
     return (
@@ -89,7 +93,6 @@ export const CinemaScreen: React.FC<{}> = () => {
       <React.Fragment>
         <MainVideoPlayer
           link={streamUrl ?? ''}
-      
           isLandScape={false}
           onBackPress={() => {
             Orientation.lockToPortrait();

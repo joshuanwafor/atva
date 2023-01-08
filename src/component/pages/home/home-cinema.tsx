@@ -6,9 +6,9 @@ import HomeLayout from '../../organisms/home-layout';
 import {observer} from 'mobx-react';
 import {useContent, useAuthContent} from '../../../hooks/content';
 import {shuffleArray} from '../../../utils';
-import {MinimalContent} from '@interface/content';
-import {userAuthStore} from '../../../store/data/user-auth';
-import {contentStore} from '../../../store/data/content/content';
+import {MinimalContent} from 'src/interface/content';
+import {userAuthStore} from 'src/store/data/user-auth';
+import {contentStore} from 'src/store/data/content/content';
 import {View} from 'react-native';
 import {
   EmptyCinemaList,
@@ -16,7 +16,11 @@ import {
 } from '../../organisms/nocontent/empty-list';
 
 const HomeMovies = function () {
-  let contentGroups = contentStore.data.content_items.reduce<{
+
+  React.useEffect(()=>{
+    contentStore.loadContent("cinema")
+  },[])
+  let contentGroups = contentStore.data.cinema_content_items.reduce<{
     [genreKey: string]: MinimalContent[];
   }>((movieGroups: any, movieContent: MinimalContent) => {
     if (movieContent.genre == undefined) return movieGroups;

@@ -33,7 +33,9 @@ class ContentStore {
       await this.loadContent('cinema');
       // load tvshows
       await this.loadContent('tvshow');
-    } catch (e) {}
+    } catch (e) {
+      console.log(e)
+    }
   }
   @action
   async loadContent(_type?: 'movie' | 'cinema' | 'tvshow', force?: boolean) {
@@ -65,7 +67,7 @@ class ContentStore {
       });
     }
 
-    console.log(response.data);
+  
     
     runInAction(() => {
       if (_type == 'movie') {
@@ -93,6 +95,8 @@ class ContentStore {
       }
     });
   }
+
+
 
   @action
   updateContentInfo() {}

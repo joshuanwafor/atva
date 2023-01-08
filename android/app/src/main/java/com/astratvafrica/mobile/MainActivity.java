@@ -1,4 +1,4 @@
-package com.app;
+package com.astratvafrica.mobile;
 
 import com.facebook.react.ReactActivity;
 import com.facebook.react.ReactActivityDelegate;
@@ -26,7 +26,7 @@ protected void onCreate(Bundle savedInstanceState) {
    */
   @Override
   protected String getMainComponentName() {
-    return "app";
+    return "AstraTv";
   }
 
   /**

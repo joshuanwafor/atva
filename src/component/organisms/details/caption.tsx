@@ -43,10 +43,6 @@ function DetailsCaption({
   const {max} = getDefaultDetailsCoverHeight(20);
 
   const onWatch = () => {
-    if (caption == undefined) return;
-    navigation.navigate('WatchScreen', {movie: caption});
-    return;
-
     if (
       userAuthStore.data.content?.user.isSubscribed == false &&
       isCinema == false
@@ -57,7 +53,7 @@ function DetailsCaption({
     }
 
     if (isCinema == true) {
-        //@ts-ignore
+      //@ts-ignore
       navigation.navigate('CinemaScreen', {movie: caption});
     } else {
       //@ts-ignore
