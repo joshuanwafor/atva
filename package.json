@@ -5,6 +5,7 @@
   "scripts": {
     "android": "react-native run-android",
     "ios": "react-native run-ios",
+    "ios:release": "react-native run-ios --configuration Release",
     "start": "react-native start",
     "test": "jest",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx"
@@ -43,7 +44,7 @@
     "react-native-device-info": "^10.3.0",
     "react-native-fast-image": "^8.6.3",
     "react-native-fs": "^2.20.0",
-    "react-native-gesture-handler": "^2.8.0",
+    "react-native-gesture-handler": "1.10.3",
     "react-native-image-picker": "^4.10.2",
     "react-native-linear-gradient": "2.5.6",
     "react-native-material-ripple": "^0.9.1",

@@ -36,6 +36,7 @@ function AuthApp() {
         component={AuthWelcome}
         options={{
           headerShown: false,
+          title:" ",
         }}
       />
       <Stack.Screen
@@ -43,6 +44,7 @@ function AuthApp() {
         component={Login}
         options={{
           title: 'Login',
+          
         }}
       />
       <Stack.Screen
