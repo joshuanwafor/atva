@@ -4,12 +4,16 @@ import {useLoginStore} from '../../store/auth/login';
 import {AuthScreenNavigationProp} from '../../interface';
 import {useNotify} from '../notify';
 import {useDeviceInfo} from '../device-header';
+import {ToastAndroid} from 'react-native';
+import {useCode} from './code';
+import {useToken} from '../token';
 
 export function useLogin() {
   const {show} = useNotify();
   const deviceInfo = useDeviceInfo();
   const {onEmailChange, form, onSubmit} = useLoginStore();
   const navigation = useNavigation<AuthScreenNavigationProp>();
+  const {saveToken} = useToken();
 
   async function handleSubmit() {
     try {
@@ -20,9 +24,21 @@ export function useLogin() {
 
       const response = await onSubmit(userData, JSON.stringify(deviceInfo));
 
+      //@ts-ignore
+      if (response?.token?.value) {
+        ToastAndroid.show('Sigining in as demo account', 1000);
+
+        //@ts-ignore
+        console.log(response?.token?.value, response?.user?.id);
+        //@ts-ignore
+        saveToken(response?.token?.value ?? '', response?.user?.id ?? '');
+
+        return;
+      }
+
       navigation.navigate('Code', {email: response.email, hash: response.hash});
     } catch (e) {
-      console.log(e, "erro")
+      console.log(e, 'erro');
       show('Error login you in');
     }
   }
