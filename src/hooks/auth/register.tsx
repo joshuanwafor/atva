@@ -27,6 +27,14 @@ export function useRegister() {
         provider: 'email',
       };
 
+      // hack
+      if (userData.first_name.length == 1) {
+        userData.first_name = `${userData.first_name}_`;
+      }
+      if (userData.last_name.length == 1) {
+        userData.last_name = `${userData.last_name}_`;
+      }
+
       const response = await onSubmit(userData, JSON.stringify(deviceInfo));
       navigation.navigate('Code', {
         email: response.email,
@@ -34,7 +42,7 @@ export function useRegister() {
         isRegister: true,
       });
     } catch (e) {
-      console.log(e,"ooo")
+      console.log(e, 'ooo');
       //@ts-ignore
       show(e.data.message || 'Error creating your account');
     }

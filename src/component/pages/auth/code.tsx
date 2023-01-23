@@ -23,6 +23,7 @@ function AuthCode() {
           clearTextOnFocus
           label="Your login code"
           secureTextEntry={true}
+          helper="Check your email for login code"
           value={code}
           onChange={onCodeChange}
           returnKeyType="done"
