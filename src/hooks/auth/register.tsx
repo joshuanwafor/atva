@@ -34,7 +34,9 @@ export function useRegister() {
         isRegister: true,
       });
     } catch (e) {
-      show(form.meta.submitError || 'Error creating your account');
+      console.log(e,"ooo")
+      //@ts-ignore
+      show(e.data.message || 'Error creating your account');
     }
   }
 

@@ -1,5 +1,6 @@
 import * as React from 'react';
 import {StatusBar, Platform} from 'react-native';
+//@ts-ignore
 import styled from 'styled-components/native';
 import Animated from 'react-native-reanimated';
 import {useFocusEffect} from '@react-navigation/native';

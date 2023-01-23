@@ -66,6 +66,7 @@ function Register() {
         <TextField
           label="Your email address"
           placeholder="abc@example.com"
+          //@ts-ignore
           autoCompleteType="email"
           autoCorrect
           keyboardType="email-address"

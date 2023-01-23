@@ -64,8 +64,9 @@ class RegisterStore extends FormStore {
       const {data} = await register(formData, ua);
       return data;
     } catch (e) {
+      console.log(e)
       // @ts-ignore
-      this.form.meta.error = e.response.data.message;
+      this.form.meta.error = e?.data?.message;
       throw e;
     } finally {
       this.form.meta.isSubmitting = false;

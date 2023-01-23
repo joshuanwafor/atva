@@ -15,7 +15,7 @@ import {userAuthStore} from 'src/store/data/user-auth';
 const HomeHome = function () {
   const authContent = useAuthContent();
   const {content} = useContent();
-
+  
   return (
     <HomeLayout caption={authContent.content.content?.featured_content}>
       <HomeTitle title="Selections from AstraTv" />
