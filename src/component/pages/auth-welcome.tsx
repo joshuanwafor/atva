@@ -35,7 +35,6 @@ function AuthWelcome() {
   const {
     navigateRegister,
     navigateLogin,
-    onAppleSignIn,
     loading,
     navigatePhone,
   } = useSocialAuth();
