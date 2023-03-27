@@ -11,6 +11,8 @@ import {SafeAreaProvider} from 'react-native-safe-area-context';
 
 export const AppRoot = () => {
   const {token, loading} = useToken();
+
+  console.log(token, " token goes here")
   if (loading) {
     return <Splash />;
   }

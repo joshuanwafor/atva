@@ -25,6 +25,7 @@ import {useToken} from '../../hooks/token';
 import {useUser} from '../../hooks/user';
 import {observer} from 'mobx-react';
 import {useBillingHooks} from '../../hooks/billing';
+import { Linking } from 'react-native';
 
 function Profile() {
   let {user} = useUser();
@@ -58,7 +59,9 @@ function Profile() {
           icon={<Fire fill="#fff" width={18} height={18} />}
           actionType="next"
           hasBorder
-          onPress={() => navigation.navigate('Billing')}
+          onPress={() => {
+            Linking.openURL("https://astratvafrica.com/plans")
+          }}
         />
         <ActionLink
           title="Connected devices"

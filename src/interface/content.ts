@@ -27,6 +27,7 @@ export interface BaseContent {
 }
 
 export interface Movie extends BaseContent {
+  access?: string;
   year?: string;
   rating?: string;
   playbackURL?: string;

@@ -60,7 +60,8 @@ const AboutMovie = function ({params}: TProps) {
               meta: [
                 {
                   title: 'Genre',
-                  content: movie?.genre.map(v => v.title).join(',') ?? 'N/A',
+                  //movie?.genre.map(v => v.title).join(',') ??
+                  content: 'N/A',
                   id: '1',
                 },
                 {

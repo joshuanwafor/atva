@@ -23,11 +23,13 @@ export class UserListStore {
   @action
   async load() {
     let res = await getUserList(this.list_type);
-    console.log(res.data)
+    //@ts-ignore
+    console.log(res.data.data)
     runInAction(() => {
       if (res.status == 200) {
         this.data.loaded = true;
-        this.data.items = res.data.docs;
+        //@ts-ignore
+        this.data.items = res.data.data;
       }
       this.data.loading = false;
     });

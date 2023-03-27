@@ -15,16 +15,18 @@ import {userAuthStore} from 'src/store/data/user-auth';
 const HomeHome = function () {
   const authContent = useAuthContent();
   const {content} = useContent();
+
+  
   
   return (
     <HomeLayout caption={authContent.content.content?.featured_content}>
       <HomeTitle title="Selections from AstraTv" />
       <RenderHorizMovies
-        items={userAuthStore.data?.content?.for_you?.docs ?? []}
+        items={userAuthStore.data?.content?.for_you ?? []}
       />
       <HomeTitle title="What to watch on AstraTv" />
       <RenderHorizMovies
-        items={userAuthStore.data?.content?.trending?.docs ?? []}
+        items={userAuthStore.data?.content?.trending ?? []}
       />
       <Originals items={content.content_items.slice()} />
     </HomeLayout>

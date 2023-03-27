@@ -6,12 +6,8 @@ export interface UserAuthData {
   coming_soon_contents?: ComingSoonContentsEntity[] | null;
   content_categories?: ContentCategoriesEntity[] | null;
   featured_content: FeaturedContent;
-  trending: {
-    docs: MinimalContent[];
-  };
-  for_you: {
-    docs: MinimalContent[];
-  };
+  trending:MinimalContent[];
+  for_you:MinimalContent[];
 }
 
 interface User {
