@@ -13,6 +13,7 @@ function Originals({items}: {items: MinimalContent[]}) {
   const navigation = useNavigation<NavigationProp<RootStackParameterList>>();
   const renderItem = React.useCallback(
     ({item}: ListRenderItemInfo<MinimalContent>) => {
+      console.log(item, "item goes")
       return (
         <OriginalsCard
           item={item}

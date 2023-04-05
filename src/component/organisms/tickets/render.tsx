@@ -4,7 +4,7 @@ import {ms, s} from 'react-native-size-matters';
 import {sizeScale, getFontFromTheme, getColorFromTheme} from '../../../utils';
 import {MovieTicket} from '../../../interface';
 import TouchableItem from '../../molecules/touchable-item';
-import {Linking, View} from 'react-native';
+import {Linking, Platform, View} from 'react-native';
 import {AppFormatNumber} from '../../../config/utils';
 import {postBuyTicket} from '../../../services/user/billing';
 import {useNotify} from '../../../hooks/notify';
@@ -112,11 +112,12 @@ export const RenderTickets = function ({
   let {show} = useNotify();
 
   let {listenToTicketPurchaseEvents} = usePusher();
+  console.log(tickets, 'tickets');
   return (
     <Wrapper>
       {tickets.map((ticket, i) => {
         let date = new Date(ticket.date);
-        console.log();
+        console.log(ticket);
         if (date < new Date()) {
           return <View></View>;
         }
@@ -138,11 +139,17 @@ export const RenderTickets = function ({
               <ButtonContainer>
                 <TouchableItem
                   onPress={() => {
+                    if (Platform.OS == 'ios') {
+                      Linking.openURL(
+                        `https://astratvafrica.com/item${contentId}`,
+                      );
+                      return;
+                    }
+
                     postBuyTicket(contentId, ticket.id)
                       .then((res: any) => {
                         if (res.data.url) {
                           listenToTicketPurchaseEvents(res.data.reference);
-
                           Linking.openURL(res.data.url);
                           return;
                         }
@@ -152,11 +159,12 @@ export const RenderTickets = function ({
                         console.log('err', contentId, ticket.id, err);
                         show(err.data.message);
                       });
-                  }}
-                >
+                  }}>
                   <ButtonInnerWrapper>
                     <ButtonText>
-                      Buy ticket {AppFormatNumber(ticket.amount)}
+                      {Platform.OS == 'android'
+                        ? `Buy ticket ${AppFormatNumber(ticket.amount)}`
+                        : ' Access on web'}
                     </ButtonText>
                   </ButtonInnerWrapper>
                 </TouchableItem>

@@ -26,11 +26,12 @@ export const WatchScreen: React.FC<{}> = () => {
   } = route;
 
   React.useEffect(() => {
+    
     Orientation.lockToLandscape();
 
     getContentStreamLink(movie.id)
       .then(res => {
-        console.log(res.data);
+        console.log(res.data, " video data goes here");
         if (res.data != null || res.data != undefined) {
           if (res.data.url == null) {
             navigation.goBack();

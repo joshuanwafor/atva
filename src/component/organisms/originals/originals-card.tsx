@@ -54,7 +54,7 @@ export function OriginalsCard({
           <AppTypographySB ml={16} fontSize={16} numberOfLines={1} ellipsizeMode="tail">
             {item.title}
           </AppTypographySB>
-          <MovieTags tags={item.tags} type="light" />
+          <MovieTags tags={[...item.tags, item.access]} type="light" />
         </FooterTitleWrapper>
         <BlurButton onPress={onPress}>Learn more</BlurButton>
       </FooterWrapper>

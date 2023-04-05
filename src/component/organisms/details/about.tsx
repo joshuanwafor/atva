@@ -18,23 +18,19 @@ interface TProps {
 const AboutMovie = function ({params}: TProps) {
   const movie = params.content;
 
-  const TicketsItem = React.memo(function ({isCinema}: {isCinema: boolean}) {
-    console.log(movie?.id);
-    if (isCinema) {
-      return (
-        <RenderTickets
-          tickets={movie?.premieres ?? []}
-          contentId={movie?.id ?? ''}
-        />
-      );
-    }
-    return null;
+  const TicketsItem = React.memo(function () {
+    return (
+      <RenderTickets
+        tickets={movie?.premieres ?? []}
+        contentId={movie?.id ?? ''}
+      />
+    );
   });
   const releaseD = new Date(movie?.releaseDate ?? '0').getFullYear();
   return (
     <View>
       <Box>
-        <TicketsItem isCinema={params.isCinema ?? false} />
+        <TicketsItem />
         <View style={{paddingTop: 20, flex: 1, height: '100%'}}>
           <AboutInfo
             title={movie?.title ?? ''}

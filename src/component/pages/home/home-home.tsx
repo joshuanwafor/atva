@@ -17,7 +17,7 @@ const HomeHome = function () {
   const {content} = useContent();
 
   
-  
+  console.dir(content)
   return (
     <HomeLayout caption={authContent.content.content?.featured_content}>
       <HomeTitle title="Selections from AstraTv" />

@@ -26,6 +26,7 @@ import Orientation from 'react-native-orientation-locker';
 import {userAuthStore} from '../../../store/data/user-auth';
 import {observer} from 'mobx-react';
 import {brandTheme} from 'src/style/theme';
+import {Toast} from 'native-base';
 
 function DetailsCaption({
   caption,
@@ -43,23 +44,23 @@ function DetailsCaption({
   const {max} = getDefaultDetailsCoverHeight(20);
 
   const onWatch = () => {
-    if (
-      userAuthStore.data.content?.user.isSubscribed == false &&
-      isCinema == false
-    ) {
-      //@ts-ignore
-      navigation.navigate('CompleteRegister');
-      return;
+    if (caption?.access == 'ticket-sales') {
+      // check for available tickets
+      // ask to purchase ticket online
+      navigation.navigate('CinemaScreen', {movie: caption});
+      return
     }
 
-    if (isCinema == true) {
-      //@ts-ignore
-      navigation.navigate('CinemaScreen', {movie: caption});
-    } else {
-      //@ts-ignore
+    if (
+      caption?.access == 'free' ||
+      userAuthStore.data.content?.user.isSubscribed == true
+    ) {
       navigation.navigate('WatchScreen', {movie: caption});
       Orientation.lockToLandscape();
+      return
     }
+
+    Toast.show({description: 'This movie is not available at the moment'});
   };
 
   const renderTime = React.useCallback(() => {
@@ -145,7 +146,7 @@ function DetailsCaption({
               {!caption?.logo?.small && <Title>{caption?.title}</Title>}
               <CaptionTags
                 size="small"
-                tags={caption?.tags ?? []}
+                tags={[...(caption?.tags ?? []), caption?.access ?? '']}
                 content={renderTime()}
               />
             </TitleWrapper>

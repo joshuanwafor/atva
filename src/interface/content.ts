@@ -10,6 +10,7 @@ export type ContentDuration = {
 export interface BaseContent {
   id: string;
   title: string;
+
   tags: string[];
   excerpt: string;
   rating?: string;
@@ -51,6 +52,7 @@ export interface Movie extends BaseContent {
 
 export interface FeaturedContent extends BaseContent {
   logo?: Image;
+  access?: string;
   thumbnail_horizontal?: Image;
   thumbnail_vertical?: Image;
   banner?: Image;
@@ -71,6 +73,7 @@ export interface FeaturedContent extends BaseContent {
 export type MinimalContent = BaseContent & {
   id: string;
   logo?: Image;
+  access: string;
   banner?: Image;
   thumbnail_vertical?: Image;
   thumbnail_horizontal?: Image;
