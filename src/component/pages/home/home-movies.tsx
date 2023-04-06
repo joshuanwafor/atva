@@ -14,6 +14,8 @@ const HomeMovies = function () {
   let contentGroups = contentStore.data.content_items.reduce<{
     [genreKey: string]: MinimalContent[];
   }>((movieGroups: any, movieContent: MinimalContent) => {
+
+    console.log(contentStore.data.content_items);
     if (movieContent.genre == undefined) return movieGroups;
 
     movieContent.genre.forEach((genre) => {

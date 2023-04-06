@@ -139,9 +139,9 @@ export const RenderTickets = function ({
               <ButtonContainer>
                 <TouchableItem
                   onPress={() => {
-                    if (Platform.OS == 'ios') {
+                    if (true) {
                       Linking.openURL(
-                        `https://astratvafrica.com/item${contentId}`,
+                        `https://astratvafrica.com`,
                       );
                       return;
                     }
@@ -161,11 +161,7 @@ export const RenderTickets = function ({
                       });
                   }}>
                   <ButtonInnerWrapper>
-                    <ButtonText>
-                      {Platform.OS == 'android'
-                        ? `Buy ticket ${AppFormatNumber(ticket.amount)}`
-                        : ' Access on web'}
-                    </ButtonText>
+                    <ButtonText>Get access on web</ButtonText>
                   </ButtonInnerWrapper>
                 </TouchableItem>
               </ButtonContainer>
