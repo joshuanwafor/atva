@@ -23,8 +23,7 @@ import {NavigationProp, useNavigation} from '@react-navigation/native';
 import {RootStackParameterList} from 'src/interface/navigation';
 import Orientation from 'react-native-orientation-locker';
 
-const TESTURL =
-  'https://bitdash-a.akamaihd.net/content/sintel/hls/playlist.m3u8';
+
 export const VideoPlayer = ({
   durationInSec,
   title,
@@ -94,7 +93,7 @@ export const VideoPlayer = ({
   };
 
   useEffect(() => {
-    setPlaybackURL(TESTURL);
+    setPlaybackURL(url);
     // Subscribe
     const unsubscribe = NetInfo.addEventListener(state => {
       console.log('Connection type', state.type);
@@ -104,7 +103,7 @@ export const VideoPlayer = ({
         console.log(
           'is connected and will update video url to rerender video component',
         );
-        setPlaybackURL(`${TESTURL}`);
+        setPlaybackURL(`${url}`);
         // resume from last sec
         //console.log(currentTime);
         seekAction(currentTime);
