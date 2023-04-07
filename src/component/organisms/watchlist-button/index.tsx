@@ -19,34 +19,14 @@ export const WatchlistActionButton: React.FC<{movie?: MinimalContent}> = ({
 }) => {
   let myWatchlist = useWatchlist();
 
-  if (myWatchlist.content.loading == true) {
-    return <BlurButton isLoading={true}>loading...</BlurButton>;
-  }
-
-  let index = myWatchlist.content.items
-    .slice()
-    .findIndex(v => v.itemId == movie?.id);
-
-  if (index == -1) {
-    return (
-      <BlurButton
-        onPress={() => {
-          let id = movie?.id ?? '';
-          myWatchlist.store.add(id, movie?.title ?? '');
-        }}
-        icon={<Plus fill="#fff" width={12} height={12} />}>
-        Add to watchlist
-      </BlurButton>
-    );
-  }
-
   return (
     <BlurButton
       onPress={() => {
-        myWatchlist.store.delete(movie?.id ?? '');
+        let id = movie?.id ?? '';
+        myWatchlist.store.add(id, movie?.title ?? '');
       }}
-      isLoading={false}>
-      Remove from watchlist
+      icon={<Plus fill="#fff" width={12} height={12} />}>
+      Add to watchlist
     </BlurButton>
   );
 };
@@ -56,48 +36,18 @@ export const WatchlistActionButtonVert: React.FC<{
 }> = observer(({movie}) => {
   let myWatchlistStore = useWatchListStore();
 
-  if (myWatchlistStore.data.loading == true) {
-    return (
-      <ActionsWrapper>
-        <IconButton
-          icon={<Plus fill="#fff" width={16} height={16} />}
-          onPress={() => {
-            let id = movie?.id ?? '';
-            myWatchlistStore.add(id, movie?.title ?? '');
-          }}>
-          Watchlist
-        </IconButton>
-      </ActionsWrapper>
-    );
-  }
-
-  let index = myWatchlistStore.data.items.findIndex(v => v.itemId == movie.id);
-
-  if (index == -1) {
-    return (
-      <ActionsWrapper>
-        <IconButton
-          icon={<Plus fill="#fff" width={16} height={16} />}
-          onPress={() => {
-            let id = movie?.id ?? '';
-            myWatchlistStore.add(id, movie?.title ?? '');
-          }}>
-          Watchlist
-        </IconButton>
-      </ActionsWrapper>
-    );
-  }
-
   return (
     <ActionsWrapper>
       <IconButton
-        icon={<Trash size={16} color="#fff" />}
+        icon={<Plus fill="#fff" width={16} height={16} />}
         onPress={() => {
           let id = movie?.id ?? '';
-          myWatchlistStore.delete(id);
+          myWatchlistStore.add(id, movie?.title ?? '');
         }}>
         Watchlist
       </IconButton>
     </ActionsWrapper>
   );
+
+
 });
